@@ -1,0 +1,21 @@
+:root {
+  /* The Palette */
+  --xmas-red: #d42426; /* Santa suit red */
+  --xmas-dark-red: #8b0000; /* Dried holly berry */
+  --xmas-green: #2f5233; /* Pine tree green */
+  --xmas-gold: #f1d570; /* Star/Bell gold */
+  --snow-white: #f8f8ff; /* Snow */
+  --coal-black: #1a1a1a; /* Text color */
+
+  /* The Vibe */
+  --font-heading: "Mountains of Christmas", cursive; /* Import from Google Fonts */
+  --font-body: "Nunito", sans-serif;
+
+  --border-radius-snow: 12px;
+  --shadow-gift: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background-color: var(--xmas-dark-red);
+  color: var(--snow-white);
+}
