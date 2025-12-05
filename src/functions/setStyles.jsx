@@ -6,8 +6,10 @@ export function cx(styles, moduleClasslist, globalClasslist) {
     .filter(Boolean)
     .join(" ");
 
+  const gc = globalClasslist.split(/\s+/).filter(Boolean).join(" ");
+
   // Combine module and global classes. Trim empty spaces from global classes.
-  const classlist = `${mc} ${globalClasslist.trim()}`;
+  const classlist = `${mc} ${gc}`;
 
   // Trim in case one classlist is empty.
   return classlist.trim();

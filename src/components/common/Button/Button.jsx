@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { cx } from "../../../functions/setStyles.jsx";
 import styles from "./Button.module.css";
 
-const Button = ({mStyles, gStyles, content, link, func}) => {
+const Button = ({ mStyles, gStyles, content, link, func }) => {
   const navigate = useNavigate();
   const clickEvent = () => {
     // If link was given, use navigate for "/" links, or window open otherwise.
@@ -24,14 +24,7 @@ const Button = ({mStyles, gStyles, content, link, func}) => {
   };
 
   return (
-    <button
-      className={cx(
-        styles,
-        `${mStyles}`,
-        `${gStyles}`
-      )}
-      onClick={clickEvent}
-    >
+    <button className={cx(styles, mStyles, gStyles)} onClick={clickEvent}>
       {content}
     </button>
   );

@@ -1,12 +1,13 @@
-import React from 'react';
-import styles from './CategoryCol.module.css';
+import { cx } from "../../../functions/setStyles";
+import styles from "./CategoryColumn.module.css";
 
-const CategoryCol = () => {
+const CategoryColumn = ({ gs }) => {
+  console.log(gs);
   return (
-    <div className={styles.container}>
-      CategoryCol
+    <div className={cx(styles, `module1 module2`, `${gs} global1 global2`)}>
+      CategoryColumn
     </div>
   );
 };
 
-export default CategoryCol;
+export default CategoryColumn;
