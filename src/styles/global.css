@@ -7,6 +7,17 @@ body {
   gap: 2rem;
   position: relative;
 }
+.container {
+ position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+  gap: 1rem;
+}
 header {
   display: flex;
   justify-content: center;
@@ -43,10 +54,10 @@ aside {
   align-items: center;
   padding: 1rem;
   background-color: var(--xmas-light-green);
-  border-radius: var(--border-radius-snow);height: 100%;
+  border-radius: var(--border-radius-snow);
+  height: 100%;
   width: min(300px, 25%);
   height: 100%;
-
 }
 main {
   color: black;
@@ -58,7 +69,6 @@ main {
   align-items: center;
   background-color: var(--snow-white);
   border-radius: var(--border-radius-snow);
-  height: 100%;
 }
 footer {
   display: flex;

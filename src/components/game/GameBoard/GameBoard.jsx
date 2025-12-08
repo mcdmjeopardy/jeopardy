@@ -5,7 +5,7 @@ import styles from "./GameBoard.module.css";
 
 const GameBoard = () => {
   return (
-    <div className={cn(styles, `container`)}>
+    <div className={cn(styles, ``, "container")}>
       <header>
         <h1> GameBoard</h1>
       </header>
