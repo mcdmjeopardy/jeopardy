@@ -1,11 +1,12 @@
 export function cn(styles, moduleClasslist = "", globalClasslist = "") {
-  // Turn module classlist into string of true module classes.
+  // Turn module classlist into string of true module classes with whitespaces removed.
   const mc = moduleClasslist
     .split(/\s+/)
     .map((i) => styles[i])
     .filter(Boolean)
     .join(" ");
 
+  // Remove extra spaces from global classlist.
   const gc = globalClasslist.split(/\s+/).filter(Boolean).join(" ");
 
   // Combine module and global classes. Trim empty spaces from global classes.
