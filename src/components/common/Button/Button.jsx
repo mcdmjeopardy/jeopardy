@@ -24,7 +24,7 @@ const Button = ({ content, link, func, ms = "", gs = "" }) => {
   };
 
   return (
-    <button className={cn(styles, ms, gs)} onClick={clickEvent}>
+    <button className={cn(styles, `${ms} button`, gs)} onClick={clickEvent}>
       {content}
     </button>
   );

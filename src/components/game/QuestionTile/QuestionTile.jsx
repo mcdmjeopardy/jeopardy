@@ -1,11 +1,10 @@
-import React from 'react';
-import styles from './QuestionTile.module.css';
+import React from "react";
+import styles from "./QuestionTile.module.css";
+import { cn } from "../../../functions/setStyles";
 
-const QuestionTile = () => {
+const QuestionTile = ({ ms = "", gs = "" }) => {
   return (
-    <div className={styles.container}>
-      QuestionTile
-    </div>
+    <div className={cn(styles, `${ms} container`, `${gs}`)}>QuestionTile</div>
   );
 };
 
