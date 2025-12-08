@@ -6,6 +6,7 @@ body {
   color: var(--snow-white);
   gap: 2rem;
   position: relative;
+  padding-inline: 2rem;
 }
 .app-container {
   height: calc(100% - 14rem);
