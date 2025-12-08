@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { cn } from "../../../functions/setStyles.jsx";
 import styles from "./Button.module.css";
 
-const Button = ({ content, link, func, ms, gs }) => {
+const Button = ({ content, link, func, ms = "", gs = "" }) => {
   const navigate = useNavigate();
   const clickEvent = () => {
     // If link was given, use navigate for "/" links, or window open otherwise.
