@@ -1,22 +1,17 @@
 body {
+  height: 100vh;
+  overflow: hidden;
   background: url("../assets/images/decor.png") no-repeat center top / contain;
   background-color: var(--xmas-dark-red);
   color: var(--snow-white);
   gap: 2rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  height: 75vh;
-  width: 100%;
-  margin: auto;
+  position: relative;
 }
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  min-width: 100%;
   font-size: 2rem;
   text-transform: uppercase;
   background-color: var(--xmas-light-green);
@@ -48,23 +43,21 @@ aside {
   align-items: center;
   padding: 1rem;
   background-color: var(--xmas-light-green);
-  border-radius: var(--border-radius-snow);
-  height: 100%;
+  border-radius: var(--border-radius-snow);height: 100%;
   width: min(300px, 25%);
-  margin-left: 1.5rem;
+  height: 100%;
+
 }
 main {
-  flex-grow: 1;
   color: black;
+  flex-grow: 1;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 1rem;
   background-color: var(--snow-white);
   border-radius: var(--border-radius-snow);
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
   height: 100%;
 }
 footer {
