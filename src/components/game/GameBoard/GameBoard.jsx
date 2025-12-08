@@ -6,7 +6,7 @@ const GameBoard = () => {
   return (
     <div className={styles.container}>
       GameBoard
-      <Button mStyles="test" gStyles="test" content="Test button" />
+      <Button content="Test button" />
       <CategoryColumn gs="test1 test2" />
     </div>
   );
