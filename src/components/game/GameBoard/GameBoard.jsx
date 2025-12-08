@@ -9,7 +9,7 @@ const GameBoard = () => {
     <div className={cn(styles, `container`)}>
       GameBoard
       <Button content="Test button" />
-      <CategoryColumn gs="test1 test2" />
+      <CategoryColumn gs="  test1   test2" />
       <QuestionTile />
     </div>
   );
