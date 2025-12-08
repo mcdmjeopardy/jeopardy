@@ -28,6 +28,7 @@ header {
   font-size: 2rem;
   text-transform: uppercase;
   background-color: var(--xmas-light-green);
+  opacity: 0.9;
   text-align: center;
   border-radius: var(--border-radius-snow);
   box-shadow: var(--shadow-gift);
@@ -36,6 +37,7 @@ header {
 }
 h1 {
   font-family: var(--font-heading);
+  font-size: 2.5rem;
 }
 h2,
 h3 {
@@ -52,7 +54,7 @@ button {
   cursor: pointer;
 }
 :where(main) button {
-  color: black;
+  color: var(--coal-black);
 }
 
 aside {
@@ -62,6 +64,8 @@ aside {
   padding: 1rem;
   background-color: var(--xmas-light-green);
   border-radius: var(--border-radius-snow);
+  opacity: 0.9;
+  box-shadow: var(--shadow-gift);
   height: 100%;
   width: min(300px, 25%);
 }
@@ -73,11 +77,10 @@ main {
   flex-direction: column;
   align-items: center;
   border-radius: var(--border-radius-snow);
-  background-color: var(--xmas-snow-white);
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 8px 32px 0 #0d2626;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: var(--snow-white);
+  opacity: 0.9;
+  box-shadow: var(--shadow-gift);
+
   height: 100%;
 }
 footer {
