@@ -1,7 +1,17 @@
-.module1{
+.container {
+  background-color: red; /* Temporary style for testing */
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
 }
 
-.module2 {
-    
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 16px;
 }

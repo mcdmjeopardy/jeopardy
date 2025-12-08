@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   height: 100vh;
   overflow: hidden;
@@ -6,6 +11,7 @@ body {
   color: var(--snow-white);
   gap: 2rem;
   position: relative;
+  margin: 8px;
 }
 header {
   display: flex;
@@ -43,10 +49,10 @@ aside {
   align-items: center;
   padding: 1rem;
   background-color: var(--xmas-light-green);
-  border-radius: var(--border-radius-snow);height: 100%;
+  border-radius: var(--border-radius-snow);
+  height: 100%;
   width: min(300px, 25%);
   height: 100%;
-
 }
 main {
   color: black;

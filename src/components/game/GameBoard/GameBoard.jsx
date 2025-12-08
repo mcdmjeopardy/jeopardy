@@ -1,7 +1,6 @@
 import { cn } from "../../../functions/setStyles";
 import Button from "../../common/Button/Button";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
-import QuestionTile from "../QuestionTile/QuestionTile";
 import styles from "./GameBoard.module.css";
 
 const GameBoard = () => {
@@ -18,7 +17,6 @@ const GameBoard = () => {
         <h2>subtitle</h2>
         <CategoryColumn gs="test1 test2" />
         <Button content="Test button" />
-        <QuestionTile />
       </main>
     </div>
   );

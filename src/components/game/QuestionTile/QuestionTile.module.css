@@ -1,2 +1,8 @@
 .container {
+  background-color: var(--snow-white);
+  color: var(--xmas-red);
+}
+
+.used {
+  opacity: 0.5;
 }
