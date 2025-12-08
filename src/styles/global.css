@@ -16,7 +16,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
   flex-wrap: wrap;
   margin: 1rem auto;
   gap: 1rem;
@@ -50,7 +49,12 @@ button {
   font-weight: bold;
   font-family: var(--font-subheading);
   text-transform: uppercase;
+  cursor: pointer;
 }
+:where(main) button {
+  color: black;
+}
+
 aside {
   display: flex;
   flex-direction: column;
@@ -68,8 +72,12 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--snow-white);
   border-radius: var(--border-radius-snow);
+  background-color: var(--xmas-snow-white);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px 0 #0d2626;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   height: 100%;
 }
 footer {
