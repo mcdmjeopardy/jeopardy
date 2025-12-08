@@ -1,4 +1,4 @@
-export function cn(styles, moduleClasslist, globalClasslist) {
+export function cn(styles, moduleClasslist = "", globalClasslist = "") {
   // Turn module classlist into string of true module classes.
   const mc = moduleClasslist
     .split(/\s+/)
