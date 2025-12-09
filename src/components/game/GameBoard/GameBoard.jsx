@@ -1,5 +1,6 @@
 import { cn } from "../../../functions/setStyles";
 import Button from "../../common/Button/Button";
+import QuestionModal from "../../common/QuestionModal/QuestionModal";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import styles from "./GameBoard.module.css";
 
@@ -23,7 +24,7 @@ const GameBoard = () => {
           <CategoryColumn title="Julemand" />
           <CategoryColumn title="Diverse" />
         </div>
-        <Button content="Test button" />
+        <QuestionModal />
       </main>
     </div>
   );

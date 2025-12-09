@@ -3,8 +3,15 @@ import styles from "./QuestionTile.module.css";
 import { cn } from "../../../functions/setStyles";
 
 const QuestionTile = ({ ms }) => {
+
+  
+
+  const clickEvent = () => {
+
+  }
+
   return (
-    <div className={cn(styles, `${ms} container`, `tile`)}>100</div>
+    <div className={cn(styles, `${ms} container`, `tile`)} onClick={clickEvent}>100</div>
   );
 };
 
