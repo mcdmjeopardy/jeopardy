@@ -13,3 +13,11 @@
   background-color: var(--xmas-red);
   color: var(--snow-white);
 }
+
+.tilebg:hover{
+  transform: scale(1.02);
+  transition: transform 0.2s;
+  box-shadow: var(--shadow-hover);
+  cursor: pointer;
+}
+

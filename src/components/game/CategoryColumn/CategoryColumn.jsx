@@ -13,6 +13,15 @@ const CategoryColumn = ({ title }) => {
         <li>
           <QuestionTile />
         </li>
+        <li>
+          <QuestionTile />
+        </li>
+        <li>
+          <QuestionTile />
+        </li>
+        <li>
+          <QuestionTile />
+        </li>
       </ul>
     </div>
   );
