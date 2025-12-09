@@ -98,7 +98,6 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: var(--xmas-light-green);
-  border-radius: var(--border-radius-snow);
 }
 
 .tile {
