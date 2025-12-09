@@ -1,17 +1,29 @@
 .container {
-  background-color: red; /* Temporary style for testing */
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  width: 100%;
+
+  gap: var(--spacing);
+}
+
+.title {
+  background-color: var(--xmas-light-green);
+  color: var(--snow-white);
+  width: 100%;
 }
 
 .list {
+  width: 100%;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  padding: 16px;
+  gap: var(--spacing);
+
+  li {
+    width: 100%;
+  }
 }

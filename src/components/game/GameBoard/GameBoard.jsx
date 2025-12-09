@@ -15,7 +15,14 @@ const GameBoard = () => {
       </aside>
       <main>
         <h2>subtitle</h2>
-        <CategoryColumn gs="test1 test2" />
+        <div className={cn(styles, `columns`)}>
+          {/* Temporary manual setup. It's supposed to generate a column per category from API. */}
+          <CategoryColumn title="Sange" />
+          <CategoryColumn title="Film" />
+          <CategoryColumn title="Mad" />
+          <CategoryColumn title="Julemand" />
+          <CategoryColumn title="Diverse" />
+        </div>
         <Button content="Test button" />
       </main>
     </div>

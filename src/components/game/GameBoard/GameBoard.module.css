@@ -8,4 +8,16 @@
   flex-wrap: wrap;
   margin: 1rem auto;
   gap: 1rem;
+
+  main {
+    /* Temporary */
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.columns {
+  --spacing: 8px;
+  display: flex;
+  width: 100%;
+  gap: var(--spacing);
 }

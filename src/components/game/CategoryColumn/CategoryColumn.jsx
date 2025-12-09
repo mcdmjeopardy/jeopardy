@@ -2,10 +2,10 @@ import { cn } from "../../../functions/setStyles";
 import QuestionTile from "../QuestionTile/QuestionTile";
 import styles from "./CategoryColumn.module.css";
 
-const CategoryColumn = () => {
+const CategoryColumn = ({ title }) => {
   return (
     <div className={cn(styles, `container`)}>
-      <h2 className={styles.title}>title</h2>
+      <div className={cn(styles, `title`, `tile`)}>{title}</div>
       <ul className={styles.list}>
         <li>
           <QuestionTile />
