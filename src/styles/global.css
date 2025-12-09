@@ -1,6 +1,10 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+
+  outline: 1px solid blue;
 }
 
 body {
@@ -95,4 +99,10 @@ footer {
   align-items: center;
   background-color: var(--xmas-light-green);
   border-radius: var(--border-radius-snow);
+}
+
+.tile {
+  font-size: 24px;
+  text-align: center;
+  padding: 16px 0;
 }

@@ -1,6 +1,8 @@
 .container {
   background-color: var(--snow-white);
   color: var(--xmas-red);
+
+  width: 100%;
 }
 
 .used {
