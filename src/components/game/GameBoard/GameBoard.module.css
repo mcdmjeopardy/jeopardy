@@ -1,20 +1,3 @@
-.container {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 1rem auto;
-  gap: 1rem;
-
-  main {
-    /* Temporary */
-    background-color: rgba(0, 0, 0, 0);
-  }
-}
-
 .columns {
   --spacing: 8px;
   display: flex;
