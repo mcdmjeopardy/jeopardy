@@ -9,10 +9,7 @@
   opacity: 0.5;
 }
 
-.tile {
+.tilebg {
   background-color: var(--xmas-red);
   color: var(--snow-white);
-  font-size: 24px;
-  text-align: center;
-  padding: 16px 0;
 }
