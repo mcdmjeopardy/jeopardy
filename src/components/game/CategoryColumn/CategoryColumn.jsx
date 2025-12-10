@@ -10,6 +10,9 @@ const CategoryColumn = ({ title, onTileClick }) => {
         {/* generate question tiles */}
         <QuestionTile onTileClick={onTileClick} />
         <QuestionTile onTileClick={onTileClick} />
+        <QuestionTile onTileClick={onTileClick} />
+        <QuestionTile onTileClick={onTileClick} />
+        <QuestionTile onTileClick={onTileClick} />
       </div>
     </div>
   );
