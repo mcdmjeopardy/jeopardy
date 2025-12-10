@@ -5,7 +5,9 @@ import { cn } from "../../../functions/setStyles";
 const QuestionModal = ({ ms, gs, question }) => {
   return (
     <div className={cn(styles, `${ms} container`, `${gs}`)}>
-      QuestionModal {question}
+      <div className={cn(styles, "counter")}>100</div>
+      <div className={cn(styles, "question")}>Question</div>
+      <div className={cn(styles, "answer")}>Answer</div>
     </div>
   );
 };

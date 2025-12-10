@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { cn } from "../../../functions/setStyles";
-import Button from "../../common/Button/Button";
 import QuestionModal from "../../common/QuestionModal/QuestionModal";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import styles from "./GameBoard.module.css";
