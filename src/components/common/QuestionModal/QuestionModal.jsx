@@ -4,7 +4,9 @@ import { cn } from "../../../functions/setStyles";
 
 const QuestionModal = ({ ms, gs, question }) => {
   return (
-    <div className={cn(styles, `${ms} container`, `${gs}`)}>QuestionModal {question}</div>
+    <div className={cn(styles, `${ms} container`, `${gs}`)}>
+      QuestionModal {question}
+    </div>
   );
 };
 
