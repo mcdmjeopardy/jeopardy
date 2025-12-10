@@ -2,18 +2,15 @@ import { cn } from "../../../functions/setStyles";
 import QuestionTile from "../QuestionTile/QuestionTile";
 import styles from "./CategoryColumn.module.css";
 
-const CategoryColumn = ({ title }) => {
+const CategoryColumn = ({ title, onTileClick }) => {
   return (
     <div className={cn(styles, `container`)}>
       <div className={cn(styles, `title`, `tile`)}>{title}</div>
-      <ul className={styles.list}>
-        <li>
-          <QuestionTile />
-        </li>
-        <li>
-          <QuestionTile />
-        </li>
-      </ul>
+      <div className={styles.list}>
+        {/* generate question tiles */}
+        <QuestionTile onTileClick={onTileClick} />
+        <QuestionTile onTileClick={onTileClick} />
+      </div>
     </div>
   );
 };

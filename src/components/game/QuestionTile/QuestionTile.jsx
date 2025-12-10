@@ -2,16 +2,14 @@ import React from "react";
 import styles from "./QuestionTile.module.css";
 import { cn } from "../../../functions/setStyles";
 
-const QuestionTile = ({ ms }) => {
-
-  
-
-  const clickEvent = () => {
-
-  }
-
+const QuestionTile = ({ ms, onTileClick }) => {
   return (
-    <div className={cn(styles, `${ms} container`, `tile`)} onClick={clickEvent}>100</div>
+    <div
+      className={cn(styles, `${ms} container`, `tile`)}
+      onClick={onTileClick}
+    >
+      100
+    </div>
   );
 };
 
