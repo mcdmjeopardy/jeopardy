@@ -1,6 +1,7 @@
 import { cn } from "../../../functions/setStyles";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import styles from "./GameBoard.module.css";
+import ScoreBoard from "../Scoreboard/ScoreBoard";
 
 const GameBoard = () => {
   return (
@@ -18,6 +19,7 @@ const GameBoard = () => {
           <CategoryColumn title="Diverse" />
         </div>
       </main>
+      <ScoreBoard />
     </div>
   );
 };

@@ -1,0 +1,41 @@
+.container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    place-content: center;
+    display: flex;
+    gap: 30px;
+
+}
+.teamcard {
+    width: 250px;
+    height: 150px;
+    background-color: var(--xmas-light-green);
+    place-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.score{
+    display: flex;
+    place-content: center;
+    background-color: var(--xmas-red);
+    width: 75%;
+    height: 25px;
+    margin-inline: auto;
+}
+.names{
+    text-align: center;
+    width: 50%;
+    gap: 20px;
+    margin-inline: auto;
+
+}
+.avatar{
+    width: 75px;
+    height: 75px;
+    background-color: var(--snow-white);
+    margin-inline: auto;
+    border-radius: 50%;
+    margin-top: -60px;
+}
