@@ -4,6 +4,7 @@ import Button from "../../common/Button/Button";
 import QuestionModal from "../../common/QuestionModal/QuestionModal";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import styles from "./GameBoard.module.css";
+import ScoreBoard from "../Scoreboard/ScoreBoard";
 
 const GameBoard = () => {
   const [isModalOpen, set_isModalOpen] = useState(false);
@@ -30,6 +31,7 @@ const GameBoard = () => {
         </div>
         {isModalOpen && <QuestionModal question={tile} />}
       </main>
+      <ScoreBoard />
     </div>
   );
 };
