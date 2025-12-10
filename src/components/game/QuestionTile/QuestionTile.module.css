@@ -12,6 +12,7 @@
 .tilebg {
   background-color: var(--xmas-red);
   color: var(--snow-white);
+  align-content: center;
 }
 
 .tilebg:hover{
