@@ -1,6 +1,7 @@
 import {
   AddCircleIcon,
   CircleArrowRight01Icon,
+  Settings02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import icebear from "../../../assets/icebear.jpg";
@@ -27,17 +28,33 @@ const GameLobby = () => {
         <div className={cn(styles, `container`, "")}>
           <div className={cn(styles, `teams`, "")}>
             <div className={cn(styles, `teamcard`)}>
+              <button className={cn(styles, `setting-icon`)}>
+                {" "}
+                <HugeiconsIcon
+                  icon={Settings02Icon}
+                  size={22}
+                  color="#ffffff"
+                  strokeWidth={1.5}
+                />
+              </button>
               <img src={juletræ} className={cn(styles, `avatar`)}></img>
-              <div className={cn(styles, `icon`)}>
-                <div className={cn(styles, `icon`)}></div>
-              </div>
               <div className={cn(styles, `names`)}>
                 {" "}
-                <h3>Team 2</h3>
+                <h3>Team Gingerbread</h3>
               </div>
             </div>
             <div className={cn(styles, `teamcard`)}>
+              <button className={cn(styles, `setting-icon`)}>
+                {" "}
+                <HugeiconsIcon
+                  icon={Settings02Icon}
+                  size={22}
+                  color="#ffffff"
+                  strokeWidth={1.5}
+                />
+              </button>
               <img src={julmand} className={cn(styles, `avatar`)}></img>
+
               <div className={cn(styles, `icon`)}>
                 <div className={cn(styles, `icon`)}></div>
               </div>
@@ -47,13 +64,30 @@ const GameLobby = () => {
               </div>
             </div>
             <div className={cn(styles, `teamcard`)}>
+              <button className={cn(styles, `setting-icon`)}>
+                {" "}
+                <HugeiconsIcon
+                  icon={Settings02Icon}
+                  size={22}
+                  color="#ffffff"
+                  strokeWidth={1.5}
+                />
+              </button>
               <img src={icebear} className={cn(styles, `avatar`)}></img>
-              <div className={cn(styles, `icon`)}></div>
               <div className={cn(styles, `names`)}>
                 <h3>Team 3</h3>
               </div>
             </div>
             <div className={cn(styles, `teamcard`)}>
+              <button className={cn(styles, `setting-icon`)}>
+                {" "}
+                <HugeiconsIcon
+                  icon={Settings02Icon}
+                  size={22}
+                  color="#ffffff"
+                  strokeWidth={1.5}
+                />
+              </button>
               <img src={julemandven} className={cn(styles, `avatar`)}></img>
               <div className={cn(styles, `Cryingicon`)}></div>
               <div className={cn(styles, `names`)}>

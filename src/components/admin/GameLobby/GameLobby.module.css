@@ -36,10 +36,9 @@
 }
 .names{
     text-align: center;
-    width: 50%;
     gap: 20px;
     margin-inline: auto;
-    height: 50%;
+    height: 40%;
     width: 100%;
     place-content: center;
     background-color: var(--xmas-red);
@@ -78,4 +77,10 @@
     min-width: 100%;
     min-height: 100%;
 
+}
+
+.setting-icon{
+    position:absolute;
+    right:7px;
+    top:6px;
 }
