@@ -1,25 +1,30 @@
 .container {
-    
     bottom: 0;
     width: 100%;
     place-content: center;
     display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+.teams {
+    display: flex;
     gap: 30px;
-
 }
 .teamcard {
-    width: 250px;
-    height: 150px;
+    width: 200px;
+    height: 110px;
     background-color: var(--xmas-light-green);
     place-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     border-radius: 7px 7px 0 0;
     position: relative;
     opacity: var(--opacity-tiles);
    border-top: 4px solid var(--xmas-red);
    box-shadow: var(--shadow-hover);
+   justify-self: space-between;
+   justify-content: space-between;
+   margin: auto;
 }
 .score{
     display: flex;
@@ -34,25 +39,43 @@
     width: 50%;
     gap: 20px;
     margin-inline: auto;
-
+    height: 50%;
+    width: 100%;
+    place-content: center;
+    background-color: var(--xmas-red);
 }
 .avatar{
-    width: 75px;
-    height: 75px;
+
+    width: 45px;
+    height: 45px;
     background-color: var(--snow-white);
     margin-inline: auto;
     border-radius: 50%;
-    margin-top: -60px;
     border: 4px solid var(--xmas-red);
+    place-self: center;
+    margin: auto;
 }
-.icon{
-    position:absolute;
-    right: 10px;
-    top: 0;
+
+.startbutton {
+    color: var(--snow-white);
+    border: none;
+    border-radius: var(--border-radius-snow);
+    font-size: 1.5rem;
+    font-family: var(--font-subheading);
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 
 }
-.Cryingicon{
-    position:absolute;
-    right:15px;
-    top:13px;
+.backgroundvideo {
+    position: fixed;
+    right: 0;
+    bottom: 15%;
+    min-width: 100%;
+    min-height: 100%;
+
 }

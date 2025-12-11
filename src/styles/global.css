@@ -63,6 +63,10 @@ button {
   font-family: var(--font-subheading);
   text-transform: uppercase;
   cursor: pointer;
+  min-width: fit-content;
+  align-items: center;
+  gap: 10px;
+  display: flex;
 }
 :where(main) button {
   color: var(--coal-black);
@@ -97,12 +101,13 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--xmas-light-green);
+  background-color: var(--xmas-green);
   position: fixed;
   bottom: 0;
   right: 0;
   width: 100%;
-  height: 25%;
+  height: 15%;
+  opacity: 0.9;
 }
 
 .tile {
