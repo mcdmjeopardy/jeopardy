@@ -5,6 +5,7 @@ import GameLobby from "./components/admin/GameLobby/GameLobby";
 import GameBoard from "./components/game/GameBoard/GameBoard";
 import EditProfile from "./components/admin/GameCreator/TeamEdit/EditProfile";
 
+
 function App() {
   return (
     <BrowserRouter>

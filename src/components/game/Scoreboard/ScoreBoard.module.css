@@ -17,7 +17,9 @@
     justify-content: space-evenly;
     border-radius: 7px 7px 0 0;
     position: relative;
-
+    opacity: var(--opacity-tiles);
+   border-top: 4px solid var(--xmas-red);
+   box-shadow: var(--shadow-hover);
 }
 .score{
     display: flex;
@@ -41,6 +43,7 @@
     margin-inline: auto;
     border-radius: 50%;
     margin-top: -60px;
+    border: 4px solid var(--xmas-red);
 }
 .icon{
     position:absolute;
