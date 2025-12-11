@@ -15,8 +15,8 @@ const GameBoard = () => {
   };
 
   const closeModal = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
   return (
     <div className={cn(styles, ``, "container")}>
@@ -40,7 +40,7 @@ const GameBoard = () => {
         </>
       )}
 
-      <ScoreBoard />
+      <ScoreBoard ms={isModalOpen && "modal"} />
     </div>
   );
 };

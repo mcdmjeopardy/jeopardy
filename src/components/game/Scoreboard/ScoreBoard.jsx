@@ -9,11 +9,11 @@ import { MedalFirstPlaceIcon } from "@hugeicons/core-free-icons";
 import { MedalSecondPlaceIcon } from "@hugeicons/core-free-icons";
 import { MedalThirdPlaceIcon } from "@hugeicons/core-free-icons";
 import { CryingIcon } from "@hugeicons/core-free-icons";
+import Button from "../../common/Button/Button";
 
-
-const ScoreBoard = () => {
+const ScoreBoard = ({ ms }) => {
   return (
-    <div className={cn(styles, `container`, "")}>
+    <div className={cn(styles, `${ms} container`)}>
       <div className={cn(styles, `teamcard`)}>
         <img src={juletræ} className={cn(styles, `avatar`)}></img>
         <div className={cn(styles, `icon`)}>
@@ -31,7 +31,10 @@ const ScoreBoard = () => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
+
+        <button className={styles.button}>TEST</button>
       </div>
+
       <div className={cn(styles, `teamcard`)}>
         <img src={julmand} className={cn(styles, `avatar`)}></img>
         <div className={cn(styles, `icon`)}>
@@ -51,7 +54,10 @@ const ScoreBoard = () => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
+
+        <button className={styles.button}>TEST</button>
       </div>
+
       <div className={cn(styles, `teamcard`)}>
         <img src={icebear} className={cn(styles, `avatar`)}></img>
         <div className={cn(styles, `icon`)}>
@@ -68,7 +74,10 @@ const ScoreBoard = () => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
+
+        <button className={styles.button}>TEST</button>
       </div>
+
       <div className={cn(styles, `teamcard`)}>
         <img src={julemandven} className={cn(styles, `avatar`)}></img>
         <div className={cn(styles, `Cryingicon`)}>
@@ -85,6 +94,8 @@ const ScoreBoard = () => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
+
+        <button className={styles.button}>TEST</button>
       </div>
     </div>
   );

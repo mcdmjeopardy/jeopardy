@@ -53,3 +53,11 @@
     right:15px;
     top:13px;
 }
+
+
+.button {
+    display: none;
+}
+.modal .button {
+    display: inline;
+}
