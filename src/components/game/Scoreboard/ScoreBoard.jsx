@@ -5,10 +5,12 @@ import julemandven from "../../../assets/julemand-ven.jpg";
 import juletræ from "../../../assets/juletræ.jpg";
 import styles from "./ScoreBoard.module.css";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { MedalFirstPlaceIcon } from "@hugeicons/core-free-icons";
-import { MedalSecondPlaceIcon } from "@hugeicons/core-free-icons";
-import { MedalThirdPlaceIcon } from "@hugeicons/core-free-icons";
-import { CryingIcon } from "@hugeicons/core-free-icons";
+import {
+  MedalFirstPlaceIcon,
+  MedalSecondPlaceIcon,
+  MedalThirdPlaceIcon,
+  CryingIcon,
+} from "@hugeicons/core-free-icons";
 
 
 const ScoreBoard = () => {
@@ -31,7 +33,13 @@ const ScoreBoard = () => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
+
+        <div className={styles.buttons}>
+          <button className={styles.button}>TEST</button>
+          <button className={styles.button}>TEST</button>
+        </div>
       </div>
+      
       <div className={cn(styles, `teamcard`)}>
         <img src={julmand} className={cn(styles, `avatar`)}></img>
         <div className={cn(styles, `icon`)}>
