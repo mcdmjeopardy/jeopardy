@@ -12,6 +12,7 @@
   "dependencies": {
     "@hugeicons/core-free-icons": "^2.0.0",
     "@hugeicons/react": "^1.1.1",
+    "lucide-react": "^0.560.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.10.1"
