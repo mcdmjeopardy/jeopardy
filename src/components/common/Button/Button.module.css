@@ -1,3 +1,14 @@
+.saveBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #1b8a3d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .modal {
   color: var(--xmas-green);
   font-size: 18px;
