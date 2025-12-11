@@ -7,6 +7,7 @@ const QuestionModal = ({ ms, gs, question }) => {
     <div className={cn(styles, `${ms} container`, `${gs}`)}>
       <div className={cn(styles, "counter")}>100</div>
       <div className={cn(styles, "question")}>Question</div>
+      <div className={cn(styles, "line")} />
       <div className={cn(styles, "answer")}>Answer</div>
     </div>
   );

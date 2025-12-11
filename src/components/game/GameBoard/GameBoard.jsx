@@ -11,13 +11,13 @@ const GameBoard = () => {
 
   const openModal = () => {
     setIsModalOpen(true);
-    setTile(1);
+    setTile(1); // test idea to set a variable to the tile's question ID
   };
 
   return (
     <div className={cn(styles, ``, "container")}>
       {isModalOpen ? (
-        <QuestionModal question={tile} />
+        <QuestionModal ms="showAnswer" question={tile} />
       ) : (
         <>
           <header>
