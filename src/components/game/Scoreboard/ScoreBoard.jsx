@@ -34,7 +34,6 @@ const ScoreBoard = ({ ms }) => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
         <div className={styles.buttons}>
           <button className={styles.button}>
             <Check />
@@ -56,13 +55,11 @@ const ScoreBoard = ({ ms }) => {
           />
         </div>
         <div className={cn(styles, `names`)}>
-          {" "}
           <h3>Team 2</h3>
         </div>
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
         <div className={styles.buttons}>
           <button className={styles.button}>
             <Check />
@@ -89,7 +86,6 @@ const ScoreBoard = ({ ms }) => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
         <div className={styles.buttons}>
           <button className={styles.button}>
             <Check />
@@ -116,7 +112,6 @@ const ScoreBoard = ({ ms }) => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
         <div className={styles.buttons}>
           <button className={styles.button}>
             <Check />

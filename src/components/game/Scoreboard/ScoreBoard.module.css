@@ -69,3 +69,11 @@
 .modal .buttons {
   display: flex;
 }
+
+.button {
+  display: flex;
+}
+.button svg {
+  width: 32px;
+  height: 32px;
+}
