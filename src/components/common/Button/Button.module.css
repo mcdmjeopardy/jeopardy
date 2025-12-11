@@ -1,0 +1,11 @@
+.modal {
+  color: var(--xmas-green);
+  font-size: 18px;
+}
+.modal:hover {
+  /* Use red colour if browser doesn't support webkit. */
+  color: var(--xmas-red);
+  -webkit-text-fill-color: var(--xmas-gold);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--xmas-red);
+}

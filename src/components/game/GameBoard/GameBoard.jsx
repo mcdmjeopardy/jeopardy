@@ -6,18 +6,22 @@ import styles from "./GameBoard.module.css";
 import ScoreBoard from "../Scoreboard/ScoreBoard";
 
 const GameBoard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [tile, setTile] = useState(0);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    setModalOpen(true);
     setTile(1); // test idea to set a variable to the tile's question ID
   };
+
+  const closeModal = () => {
+    setModalOpen(false)
+  }
 
   return (
     <div className={cn(styles, ``, "container")}>
       {isModalOpen ? (
-        <QuestionModal ms="showAnswer" question={tile} />
+        <QuestionModal question={tile} closeModal={closeModal} />
       ) : (
         <>
           <header>

@@ -6,6 +6,7 @@
   height: 100%;
   font-family: var(--font-subheading);
   padding: var(--side-spacing);
+  border-radius: 16px;
 
   display: flex;
   flex-direction: column;
@@ -13,12 +14,19 @@
   align-items: center;
 }
 
+.top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns {
+  display: flex;
+  gap: 32px;
+}
+
 .counter {
   color: var(--xmas-red);
-  position: absolute;
-  top: var(--side-spacing);
-  left: var(--side-spacing);
-
   font-weight: bolder;
   font-size: 24px;
 }
@@ -35,19 +43,16 @@
 .line {
   display: none;
   background-color: var(--xmas-red);
-  height: 6px;
+  height: 4px;
   width: 100%;
+  border-radius: 1em;
 }
 .answer {
   display: none;
   color: var(--xmas-light-green);
 }
 
-.showAnswer .line {
-  display: inline;
-}
-
-
-.showAnswer .answer {
+.answerShown .line,
+.answerShown .answer {
   display: inline;
 }
