@@ -17,9 +17,13 @@ body {
   position: relative;
   margin: 8px;
   padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
 }
 .app-container {
-  height: calc(100% - 14rem);
+  /* height: calc(100% - 14rem); */
+  height: 100%;
 }
 .container {
   position: relative;
@@ -94,7 +98,6 @@ main {
   background-color: var(--snow-white);
   opacity: 0.9;
   box-shadow: var(--shadow-gift);
-
   height: 100%;
 }
 footer {

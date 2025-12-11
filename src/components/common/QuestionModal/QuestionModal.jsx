@@ -10,7 +10,7 @@ const QuestionModal = ({ question, closeModal }) => {
   };
 
   return (
-    <div className={cn(styles, `${isAnswerShown && "answerShown"} container`)}>
+    <main className={cn(styles, `${isAnswerShown && "answerShown"} container`)}>
       <div className={cn(styles, "top")}>
         <div className={cn(styles, "counter")}>100</div>
         <div className={styles.btns}>
@@ -26,7 +26,7 @@ const QuestionModal = ({ question, closeModal }) => {
       <div className={cn(styles, "question")}>Question</div>
       <div className={cn(styles, "line")} />
       <div className={cn(styles, "answer")}>Answer</div>
-    </div>
+    </main>
   );
 };
 

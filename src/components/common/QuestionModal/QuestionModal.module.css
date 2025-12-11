@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .top {
@@ -36,9 +37,17 @@
   font-weight: bolder;
   font-size: 32px;
   color: var(--coal-black);
-
-  margin: auto 0;
+  display: flex;
+  height: 100%;
+  align-items: space-between;
 }
+
+.question  {
+height:100%;
+display: flex;
+align-items: flex-end;
+}
+
 
 .line {
   display: none;
