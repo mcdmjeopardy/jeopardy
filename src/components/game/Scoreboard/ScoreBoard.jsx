@@ -5,11 +5,14 @@ import julemandven from "../../../assets/julemand-ven.jpg";
 import juletræ from "../../../assets/juletræ.jpg";
 import styles from "./ScoreBoard.module.css";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { MedalFirstPlaceIcon } from "@hugeicons/core-free-icons";
-import { MedalSecondPlaceIcon } from "@hugeicons/core-free-icons";
-import { MedalThirdPlaceIcon } from "@hugeicons/core-free-icons";
-import { CryingIcon } from "@hugeicons/core-free-icons";
-import Button from "../../common/Button/Button";
+import {
+  MedalFirstPlaceIcon,
+  MedalSecondPlaceIcon,
+  MedalThirdPlaceIcon,
+  CryingIcon,
+} from "@hugeicons/core-free-icons";
+
+import { Check, X } from "lucide-react";
 
 const ScoreBoard = ({ ms }) => {
   return (
@@ -31,31 +34,40 @@ const ScoreBoard = ({ ms }) => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
-        <button className={styles.button}>TEST</button>
+        <div className={styles.buttons}>
+          <button className={styles.button}>
+            <Check />
+          </button>
+          <button className={styles.button}>
+            <X />
+          </button>
+        </div>
       </div>
 
       <div className={cn(styles, `teamcard`)}>
         <img src={julmand} className={cn(styles, `avatar`)}></img>
         <div className={cn(styles, `icon`)}>
-          <div className={cn(styles, `icon`)}>
-            <HugeiconsIcon
-              icon={MedalSecondPlaceIcon}
-              size={40}
-              color="#bababaff"
-              strokeWidth={1.5}
-            />
-          </div>
+          <HugeiconsIcon
+            icon={MedalSecondPlaceIcon}
+            size={40}
+            color="#bababaff"
+            strokeWidth={1.5}
+          />
         </div>
         <div className={cn(styles, `names`)}>
-          {" "}
           <h3>Team 2</h3>
         </div>
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
-        <button className={styles.button}>TEST</button>
+        <div className={styles.buttons}>
+          <button className={styles.button}>
+            <Check />
+          </button>
+          <button className={styles.button}>
+            <X />
+          </button>
+        </div>
       </div>
 
       <div className={cn(styles, `teamcard`)}>
@@ -74,8 +86,14 @@ const ScoreBoard = ({ ms }) => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
-        <button className={styles.button}>TEST</button>
+        <div className={styles.buttons}>
+          <button className={styles.button}>
+            <Check />
+          </button>
+          <button className={styles.button}>
+            <X />
+          </button>
+        </div>
       </div>
 
       <div className={cn(styles, `teamcard`)}>
@@ -94,8 +112,14 @@ const ScoreBoard = ({ ms }) => {
         <div className={cn(styles, `score`)}>
           <h3>0</h3>
         </div>
-
-        <button className={styles.button}>TEST</button>
+        <div className={styles.buttons}>
+          <button className={styles.button}>
+            <Check />
+          </button>
+          <button className={styles.button}>
+            <X />
+          </button>
+        </div>
       </div>
     </div>
   );
