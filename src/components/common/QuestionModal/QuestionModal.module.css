@@ -2,53 +2,55 @@
   --edge-spacing: 16px;
 
   background-color: var(--snow-white);
-  width: 100%;
-  height: 100%;
   font-family: var(--font-subheading);
   padding: var(--edge-spacing);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding-bottom: calc(150px + var(--edge-spacing));
 }
 
 .top {
+  font-size: 24px;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-
 .btns {
   display: flex;
   gap: 32px;
 }
-
 .counter {
   color: var(--xmas-red);
   font-weight: bolder;
-  font-size: 24px;
 }
 
-.line {
-  display: none;
-  background-color: var(--xmas-red);
-  height: 4px;
+.center {
+  height: 100%;
   width: 100%;
-  border-radius: 1em;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-.question,
-.answer {
   font-weight: bolder;
   font-size: 32px;
   color: var(--coal-black);
 }
+.line {
+  background-color: var(--xmas-red);
+  height: 4px;
+  width: 100%;
+  border-radius: 1em;
+  margin: 32px 0;
+}
 .answer {
-  display: none;
   color: var(--xmas-light-green);
 }
 
-.answerShown .line,
-.answerShown .answer {
-  display: inline;
+.line,
+.answer {
+  transition: opacity 1s ease-in-out;
+}
+
+.answerHidden .line,
+.answerHidden .answer {
+  opacity: 0;
 }
