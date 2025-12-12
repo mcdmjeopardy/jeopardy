@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import styles from "./EditProfile.module.css";
-import freework from "../../../../assets/free-work.jpg";
-import icebear from "../../../../assets/icebear.jpg";
-import julemandven from "../../../../assets/julemand-ven.jpg";
-import juletræ from "../../../../assets/juletræ.jpg";
+import styles from "./TeamEdit.module.css";
+import freework from "../../../assets/free-work.jpg";
+import icebear from "../../../assets/icebear.jpg";
+import julemandven from "../../../assets/julemand-ven.jpg";
+import juletræ from "../../../assets/juletræ.jpg";
 
-import mai from "../../../../assets/mai.jpg";
-import penguin from "../../../../assets/penguin.jpg";
-import rasmus from "../../../../assets/rasmus.jpg";
-import star from "../../../../assets/star.jpg";
-import wolf from "../../../../assets/wolf.jpg";
-import julmand from "../../../../assets/julmand.jpg";
-import Button from "../../../common/Button/Button";
+import mai from "../../../assets/mai.jpg";
+import penguin from "../../../assets/penguin.jpg";
+import rasmus from "../../../assets/rasmus.jpg";
+import star from "../../../assets/star.jpg";
+import wolf from "../../../assets/wolf.jpg";
+import julmand from "../../../assets/julmand.jpg";
+import Button from "../../common/Button/Button";
 
-export default function EditProfile() {
+export default function TeamEdit() {
   const testFunc = () => {
-    console.log("TEEEEST!");
+    console.log("TEST!");
   };
 
   const avatars = [
