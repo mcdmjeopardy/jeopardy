@@ -1,18 +1,15 @@
 .container {
-  --side-spacing: 16px;
+  --edge-spacing: 16px;
 
   background-color: var(--snow-white);
   width: 100%;
   height: 100%;
   font-family: var(--font-subheading);
-  padding: var(--side-spacing);
-  border-radius: 16px;
+  padding: var(--edge-spacing);
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-
 }
 
 .top {
@@ -32,29 +29,19 @@
   font-size: 24px;
 }
 
-.question,
-.answer {
-  font-weight: bolder;
-  font-size: 32px;
-  color: var(--coal-black);
-  display: flex;
-  height: 100%;
-  align-items: space-between;
-}
-
-.question  {
-height:100%;
-display: flex;
-align-items: flex-end;
-}
-
-
 .line {
   display: none;
   background-color: var(--xmas-red);
   height: 4px;
   width: 100%;
   border-radius: 1em;
+}
+
+.question,
+.answer {
+  font-weight: bolder;
+  font-size: 32px;
+  color: var(--coal-black);
 }
 .answer {
   display: none;
