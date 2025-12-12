@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 
-  outline: 1px solid blue;
+  /* outline: 1px solid blue; */
 }
 
 body {
@@ -49,8 +49,6 @@ header {
   border-radius: var(--border-radius-snow);
   box-shadow: var(--shadow-gift);
   height: 70px;
-
-
 }
 h1 {
   font-family: var(--font-heading);
@@ -99,8 +97,6 @@ main {
   background-color: var(--snow-white);
   opacity: 0.9;
   box-shadow: var(--shadow-gift);
-
-
 }
 footer {
   display: flex;
