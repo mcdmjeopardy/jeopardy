@@ -4,15 +4,61 @@ import {
   Settings02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import icebear from "../../../assets/icebear.jpg";
-import julemandven from "../../../assets/julemand-ven.jpg";
-import juletræ from "../../../assets/juletræ.jpg";
-import julmand from "../../../assets/julmand.jpg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import lobby from "../../../assets/videos/Lobby.mp4";
+import { useGames } from "../../../context/GamesContext";
+import { useTeams } from "../../../context/TeamsContext";
 import { cn } from "../../../functions/setStyles";
+import { AVATAR_MAP } from "../../../utils/avatarMap";
+import TeamEdit from "../TeamEdit/TeamEdit";
 import styles from "./GameLobby.module.css";
 
 const GameLobby = () => {
+  const { teams, createTeam, setCurrentTeam } = useTeams();
+  const { games, selectGame, currentGame, addTeamsToGame } = useGames();
+  const navigate = useNavigate();
+
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const handleStartGame = () => {
+    // Find the Christmas game or just the first available one
+    // In our seed data, we have one game. Use that.
+    // Find the Christmas game or just the first available one
+    // In our seed data, we have one game. Use that.
+    const game = games.find(g => g.name === "Ultimate");
+    if (game) {
+      selectGame(game);
+      navigate("/game");
+    } else {
+      alert("Ingen spil fundet! Prøv at genindlæse siden.");
+    }
+  };
+
+  const handleEditTeam = (team) => {
+    setCurrentTeam(team);
+    setShowEditModal(true);
+  };
+
+  const handleAddTeam = () => {
+    setCurrentTeam({
+      name: "",
+      avatar: "default",
+      isNew: true
+    });
+    setShowEditModal(true);
+  };
+
+  const handleTeamSaved = async (savedTeam) => {
+      if (currentGame && savedTeam) {
+           const currentTeamIds = currentGame.teams || [];
+           if (!currentTeamIds.includes(savedTeam._id)) {
+               await addTeamsToGame(currentGame._id, [...currentTeamIds, savedTeam._id]);
+           }
+      }
+      setShowEditModal(false);
+  };
+
   return (
     <>
       <video
@@ -27,75 +73,32 @@ const GameLobby = () => {
       <footer className={cn(styles, ``, "footer")}>
         <div className={cn(styles, `container`, "")}>
           <div className={cn(styles, `teams`, "")}>
-            <div className={cn(styles, `teamcard`)}>
-              <button className={cn(styles, `setting-icon`)}>
-                {" "}
-                <HugeiconsIcon
-                  icon={Settings02Icon}
-                  size={22}
-                  color="#ffffff"
-                  strokeWidth={1.5}
+            {teams.map((team) => (
+              <div key={team._id} className={cn(styles, `teamcard`)}>
+                <button
+                  className={cn(styles, `setting-icon`)}
+                  onClick={() => handleEditTeam(team)}
+                >
+                  <HugeiconsIcon
+                    icon={Settings02Icon}
+                    size={22}
+                    color="#ffffff"
+                    strokeWidth={1.5}
+                  />
+                </button>
+                <img
+                  src={AVATAR_MAP[team.avatar] || AVATAR_MAP.default}
+                  className={cn(styles, `avatar`)}
+                  alt={team.name}
                 />
-              </button>
-              <img src={juletræ} className={cn(styles, `avatar`)}></img>
-              <div className={cn(styles, `names`)}>
-                {" "}
-                <h3>Team Gingerbread</h3>
+                 {/* Rank/Status icons could go here if needed, keeping it simple for Lobby */}
+                <div className={cn(styles, `names`)}>
+                  <h3>{team.name}</h3>
+                </div>
               </div>
-            </div>
-            <div className={cn(styles, `teamcard`)}>
-              <button className={cn(styles, `setting-icon`)}>
-                {" "}
-                <HugeiconsIcon
-                  icon={Settings02Icon}
-                  size={22}
-                  color="#ffffff"
-                  strokeWidth={1.5}
-                />
-              </button>
-              <img src={julmand} className={cn(styles, `avatar`)}></img>
+            ))}
 
-              <div className={cn(styles, `icon`)}>
-                <div className={cn(styles, `icon`)}></div>
-              </div>
-              <div className={cn(styles, `names`)}>
-                {" "}
-                <h3>Team 2</h3>
-              </div>
-            </div>
-            <div className={cn(styles, `teamcard`)}>
-              <button className={cn(styles, `setting-icon`)}>
-                {" "}
-                <HugeiconsIcon
-                  icon={Settings02Icon}
-                  size={22}
-                  color="#ffffff"
-                  strokeWidth={1.5}
-                />
-              </button>
-              <img src={icebear} className={cn(styles, `avatar`)}></img>
-              <div className={cn(styles, `names`)}>
-                <h3>Team 3</h3>
-              </div>
-            </div>
-            <div className={cn(styles, `teamcard`)}>
-              <button className={cn(styles, `setting-icon`)}>
-                {" "}
-                <HugeiconsIcon
-                  icon={Settings02Icon}
-                  size={22}
-                  color="#ffffff"
-                  strokeWidth={1.5}
-                />
-              </button>
-              <img src={julemandven} className={cn(styles, `avatar`)}></img>
-              <div className={cn(styles, `Cryingicon`)}></div>
-              <div className={cn(styles, `names`)}>
-                <h3>Team 4</h3>
-              </div>
-            </div>
-            <button className={cn(styles, `startbutton`)}>
-              {" "}
+            <button className={cn(styles, `startbutton`)} onClick={handleAddTeam}>
               <HugeiconsIcon
                 icon={AddCircleIcon}
                 size={50}
@@ -104,7 +107,7 @@ const GameLobby = () => {
               />
             </button>
           </div>
-          <button className={cn(styles, `startbutton`)}>
+          <button className={cn(styles, `startbutton`)} onClick={handleStartGame}>
             START GAME{" "}
             <HugeiconsIcon
               icon={CircleArrowRight01Icon}
@@ -115,6 +118,16 @@ const GameLobby = () => {
           </button>
         </div>
       </footer>
+
+
+       {showEditModal && (
+        <div style={{ position: "absolute", zIndex: 100, inset: 0 }}>
+             <TeamEdit
+                onClose={() => setShowEditModal(false)}
+                onSave={handleTeamSaved}
+             />
+        </div>
+       )}
     </>
   );
 };

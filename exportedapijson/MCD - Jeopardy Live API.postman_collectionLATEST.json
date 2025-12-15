@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "7b63e164-8ac4-4e91-bd31-9deabee23037",
+		"name": "MCD - Jeopardy Live API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43061964",
+		"_collection_link": "https://www.postman.com/mcdmviborg/api-undervisning/collection/j6dqjtm/mcd-jeopardy-live-api?action=share&source=collection_link&creator=43061964"
+	},
+	"item": [
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/teams",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"teams"
+							]
+						},
+						"description": "Liste/array med teams"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Team Images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/teams/images",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"teams",
+								"images"
+							]
+						},
+						"description": "Liste med billede-urls"
+					},
+					"response": []
+				}
+			],
+			"description": "Hent alle teams og teams billeder"
+		},
+		{
+			"name": "Team",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"https://jeopardy-gkiyb.ondigitalocean.app/teams/team7.png\",\r\n    \"name\": \"Turtles\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/team",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"team"
+							]
+						},
+						"description": "Opretter et nyt team"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"68f87ee7089b2ac17b6521cc\",\r\n    \"name\": \"Ninjas\",\r\n    \"image\": \"https://jeopardy-gkiyb.ondigitalocean.app/teams/team2.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/team",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"team"
+							]
+						},
+						"description": "Opdaterer et eksisterende team"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/team/68f876dae9d30edece2c7a57",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"team",
+								"68f876dae9d30edece2c7a57"
+							]
+						},
+						"description": "Sletter et team"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/team/68f87ee7089b2ac17b6521cc",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"team",
+								"68f87ee7089b2ac17b6521cc"
+							]
+						},
+						"description": "Henter et team via ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Score",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"score\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/team/68f876dae9d30edece2c7a57",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"team",
+								"68f876dae9d30edece2c7a57"
+							]
+						},
+						"description": "Opdaterer teamets point"
+					},
+					"response": []
+				}
+			],
+			"description": "Post/put/delete/get"
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/games",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Spil 1\",\r\n  \"teams\": [\"68fb482aaeb498bf3b53a070\", \"68fb48a2198d5908f335af1f\"],\r\n  \"categories\": [\r\n    {\r\n      \"name\": \"Julemad\",\r\n      \"questions\": [\r\n        {\r\n          \"question\": \"Hvad drikker man ofte med rosiner og mandler i december?\",\r\n          \"answer\": \"Hvad er gløgg?\",\r\n          \"value\": 100\r\n        },\r\n        {\r\n          \"question\": \"Hvilken dessert spiser mange danskere juleaften?\",\r\n          \"answer\": \"Hvad er risalamande?\",\r\n          \"value\": 200\r\n        },\r\n        {\r\n          \"question\": \"Hvad består flæskestegens sprøde top af?\",\r\n          \"answer\": \"Hvad er svær?\",\r\n          \"value\": 300\r\n        },\r\n        {\r\n          \"question\": \"Hvilket tilbehør er lavet af rødkål og serveres varm?\",\r\n          \"answer\": \"Hvad er varm rødkål?\",\r\n          \"value\": 400\r\n        },\r\n        {\r\n          \"question\": \"Hvad puttes ofte i midten af en and juleaften?\",\r\n          \"answer\": \"Hvad er svesker og æbler?\",\r\n          \"value\": 500\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Juletraditioner\",\r\n      \"questions\": [\r\n        {\r\n          \"question\": \"Hvad tænder vi hver søndag i advent?\",\r\n          \"answer\": \"Hvad er et lys i adventskransen?\",\r\n          \"value\": 100\r\n        },\r\n        {\r\n          \"question\": \"Hvornår åbner man gaver juleaften i Danmark?\",\r\n          \"answer\": \"Hvad er efter aftensmad og dans om juletræet?\",\r\n          \"value\": 200\r\n        },\r\n        {\r\n          \"question\": \"Hvilken figur sætter børn ofte i vinduet i december?\",\r\n          \"answer\": \"Hvad er en kravlenisse?\",\r\n          \"value\": 300\r\n        },\r\n        {\r\n          \"question\": \"Hvad synger vi rundt om juletræet?\",\r\n          \"answer\": \"Hvad er julesange?\",\r\n          \"value\": 400\r\n        },\r\n        {\r\n          \"question\": \"Hvad gør vi nytårsaften kl. 00:00?\",\r\n          \"answer\": \"Hvad er at springe ind i det nye år?\",\r\n          \"value\": 500\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Julefilm og musik\",\r\n      \"questions\": [\r\n        {\r\n          \"question\": \"Hvem synger 'Last Christmas'?\",\r\n          \"answer\": \"Hvad er Wham?\",\r\n          \"value\": 100\r\n        },\r\n        {\r\n          \"question\": \"Hvilken dansk julekalender foregår på en bondegård?\",\r\n          \"answer\": \"Hvad er Nissebanden?\",\r\n          \"value\": 200\r\n        },\r\n        {\r\n          \"question\": \"Hvilket dyr er Rudolf?\",\r\n          \"answer\": \"Hvad er et rensdyr?\",\r\n          \"value\": 300\r\n        },\r\n        {\r\n          \"question\": \"Hvem spiller hovedrollen i 'Home Alone'?\",\r\n          \"answer\": \"Hvem er Macaulay Culkin?\",\r\n          \"value\": 400\r\n        },\r\n        {\r\n          \"question\": \"Hvilken sang indeholder 'Bjældeklang, bjældeklang'?\",\r\n          \"answer\": \"Hvad er 'Jingle Bells'?\",\r\n          \"value\": 500\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/game",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"game"
+							]
+						},
+						"description": "Opretter et nyt spil"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"68fb48e3198d5908f335af24\",\r\n  \"name\": \"Spil 2\",\r\n  \"teams\": [\"68fb482aaeb498bf3b53a070\", \"68fb48a2198d5908f335af1f\"],\r\n  \"categories\": [\r\n    {\r\n      \"name\": \"Julemad\",\r\n      \"questions\": [\r\n        {\r\n          \"question\": \"Hvad drikker man ofte med rosiner og mandler i december?\",\r\n          \"answer\": \"Hvad er gløgg?\",\r\n          \"value\": 100\r\n        },\r\n        {\r\n          \"question\": \"Hvilken dessert spiser mange danskere juleaften?\",\r\n          \"answer\": \"Hvad er risalamande?\",\r\n          \"value\": 200\r\n        },\r\n        {\r\n          \"question\": \"Hvad består flæskestegens sprøde top af?\",\r\n          \"answer\": \"Hvad er svær?\",\r\n          \"value\": 300\r\n        },\r\n        {\r\n          \"question\": \"Hvilket tilbehør er lavet af rødkål og serveres varm?\",\r\n          \"answer\": \"Hvad er varm rødkål?\",\r\n          \"value\": 400\r\n        },\r\n        {\r\n          \"question\": \"Hvad puttes ofte i midten af en and juleaften?\",\r\n          \"answer\": \"Hvad er svesker og æbler?\",\r\n          \"value\": 500\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Juletraditioner\",\r\n      \"questions\": [\r\n        {\r\n          \"question\": \"Hvad tænder vi hver søndag i advent?\",\r\n          \"answer\": \"Hvad er et lys i adventskransen?\",\r\n          \"value\": 100\r\n        },\r\n        {\r\n          \"question\": \"Hvornår åbner man gaver juleaften i Danmark?\",\r\n          \"answer\": \"Hvad er efter aftensmad og dans om juletræet?\",\r\n          \"value\": 200\r\n        },\r\n        {\r\n          \"question\": \"Hvilken figur sætter børn ofte i vinduet i december?\",\r\n          \"answer\": \"Hvad er en kravlenisse?\",\r\n          \"value\": 300\r\n        },\r\n        {\r\n          \"question\": \"Hvad synger vi rundt om juletræet?\",\r\n          \"answer\": \"Hvad er julesange?\",\r\n          \"value\": 400\r\n        },\r\n        {\r\n          \"question\": \"Hvad gør vi nytårsaften kl. 00:00?\",\r\n          \"answer\": \"Hvad er at springe ind i det nye år?\",\r\n          \"value\": 500\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Julefilm og musik\",\r\n      \"questions\": [\r\n        {\r\n          \"question\": \"Hvem synger 'Last Christmas'?\",\r\n          \"answer\": \"Hvad er Wham?\",\r\n          \"value\": 100\r\n        },\r\n        {\r\n          \"question\": \"Hvilken dansk julekalender foregår på en bondegård?\",\r\n          \"answer\": \"Hvad er Nissebanden?\",\r\n          \"value\": 200\r\n        },\r\n        {\r\n          \"question\": \"Hvilket dyr er Rudolf?\",\r\n          \"answer\": \"Hvad er et rensdyr?\",\r\n          \"value\": 300\r\n        },\r\n        {\r\n          \"question\": \"Hvem spiller hovedrollen i 'Home Alone'?\",\r\n          \"answer\": \"Hvem er Macaulay Culkin?\",\r\n          \"value\": 400\r\n        },\r\n        {\r\n          \"question\": \"Hvilken sang indeholder 'Bjældeklang, bjældeklang'?\",\r\n          \"answer\": \"Hvad er 'Jingle Bells'?\",\r\n          \"value\": 500\r\n        }\r\n      ]\r\n    },\r\n    {\r\n  \"name\": \"Julekalendere\",\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"Hvilken julekalender foregår på Rigsarkivet og handler om en mystisk bog?\",\r\n      \"answer\": \"Hvad er 'Tidsrejsen'?\",\r\n      \"value\": 100\r\n    },\r\n    {\r\n      \"question\": \"Hvem er den kendte nisse i 'Jul på Slottet'?\",\r\n      \"answer\": \"Hvem er Fimpe?\",\r\n      \"value\": 200\r\n    },\r\n    {\r\n      \"question\": \"Hvilket år blev 'The Julekalender' sendt første gang?\",\r\n      \"answer\": \"Hvad er 1991?\",\r\n      \"value\": 300\r\n    },\r\n    {\r\n      \"question\": \"Hvad hedder det magiske ur i 'Nissebanden i Grønland'?\",\r\n      \"answer\": \"Hvad er 'Juleuret'?\",\r\n      \"value\": 400\r\n    },\r\n    {\r\n      \"question\": \"Hvad er karakteristisk ved nisserne i 'Pyrus'-universet?\",\r\n      \"answer\": \"Hvad er deres nysgerrighed og ballade?\",\r\n      \"value\": 500\r\n    }\r\n  ]\r\n},\r\n{\r\n  \"name\": \"Julegaver og juleaftener\",\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"Hvornår åbner man gaver juleaften i Danmark?\",\r\n      \"answer\": \"Hvad er efter middagen og dans om juletræet?\",\r\n      \"value\": 100\r\n    },\r\n    {\r\n      \"question\": \"Hvilket spil spilles ofte til pakkeleg?\",\r\n      \"answer\": \"Hvad er raflebæger med 6'er-regler?\",\r\n      \"value\": 200\r\n    },\r\n    {\r\n      \"question\": \"Hvilken type gave er typisk i en 'mandelgave'?\",\r\n      \"answer\": \"Hvad er marcipangris eller chokolade?\",\r\n      \"value\": 300\r\n    },\r\n    {\r\n      \"question\": \"Hvem bringer gaverne ifølge dansk tradition?\",\r\n      \"answer\": \"Hvem er julemanden?\",\r\n      \"value\": 400\r\n    },\r\n    {\r\n      \"question\": \"Hvad kaldes det, når man giver en gave anonymt i juletiden?\",\r\n      \"answer\": \"Hvad er Secret Santa eller hemmelig nisse?\",\r\n      \"value\": 500\r\n    }\r\n  ]\r\n}\r\n\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/game",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"game"
+							]
+						},
+						"description": "Opdaterer et eksisterende spil"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/game/68f876dae9d30edece2c7a57",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"game",
+								"68f876dae9d30edece2c7a57"
+							]
+						},
+						"description": "Sletter et spil"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/game/68f8c3ad6f1e7d436947cc5a",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"game",
+								"68f8c3ad6f1e7d436947cc5a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add teams",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teamIds\": [\"68fb482aaeb498bf3b53a070\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jeopardy-gkiyb.ondigitalocean.app/game/68fb48e3198d5908f335af24/add-teams",
+							"protocol": "https",
+							"host": [
+								"jeopardy-gkiyb",
+								"ondigitalocean",
+								"app"
+							],
+							"path": [
+								"game",
+								"68fb48e3198d5908f335af24",
+								"add-teams"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Post/put/delete/get"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server_path",
+			"value": ""
+		}
+	]
+}

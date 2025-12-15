@@ -1,15 +1,9 @@
-.admin-main{
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    gap: 40px;
 
-}
+
 
 .heading{
     display: flex;
     justify-content: center;
-
 }
 
 /* From Uiverse.io by 00Kubi */

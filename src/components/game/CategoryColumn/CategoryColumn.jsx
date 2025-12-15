@@ -2,17 +2,19 @@ import { cn } from "../../../functions/setStyles";
 import QuestionTile from "../QuestionTile/QuestionTile";
 import styles from "./CategoryColumn.module.css";
 
-const CategoryColumn = ({ title, onTileClick }) => {
+const CategoryColumn = ({ category, onTileClick }) => {
   return (
     <div className={cn(styles, `container`)}>
-      <div className={cn(styles, `title`, `tile`)}>{title}</div>
+      <div className={cn(styles, `title`, `tile`)}>{category.name}</div>
       <div className={styles.list}>
-        {/* generate question tiles */}
-        <QuestionTile onTileClick={onTileClick} />
-        <QuestionTile onTileClick={onTileClick} />
-        <QuestionTile onTileClick={onTileClick} />
-        <QuestionTile onTileClick={onTileClick} />
-        <QuestionTile onTileClick={onTileClick} />
+        {category.questions.map((q, index) => (
+          <QuestionTile
+            key={index}
+            value={q.value}
+            answered={q.answered}
+            onClick={() => onTileClick(index)} // Pass question index
+          />
+        ))}
       </div>
     </div>
   );
