@@ -118,3 +118,29 @@ footer {
   user-select: none;
   border-radius: 7px;
 }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  color: var(--snow-white);
+}
+
+tr{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+ }
+
+th, td{
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--xmas-light-green);
+}
+
