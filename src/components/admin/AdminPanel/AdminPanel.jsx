@@ -89,14 +89,14 @@ const AdminPanel = () => {
 
 
   return (
-    <div className={cn(styles, ``, "container")}>
+    <div className={cn(styles, ``, "")}>
       <header>
         <h1> Questions & Categories </h1>
       </header>
 
       {/* Main tag for global layout, inner div for Admin styles */}
       <main>
-
+        <div className={cn(styles, `admin-main`)}>
             <h2 className={cn(styles, `heading`)}>
             {gameToManage ? `Managing: ${gameToManage.name}` : "Admin Panel"}
             </h2>
@@ -145,7 +145,7 @@ const AdminPanel = () => {
                 {renderTableBody()}
             </tbody>
             </table>
-
+        </div>
       </main>
     </div>
   );
