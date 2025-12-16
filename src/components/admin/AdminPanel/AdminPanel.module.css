@@ -1,8 +1,9 @@
 .admin-main{
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding-block: 40px;
     gap: 40px;
+    align-items: center;
 }
 
 

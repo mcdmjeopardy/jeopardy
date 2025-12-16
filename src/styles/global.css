@@ -9,7 +9,6 @@
 }
 
 body {
-  overflow: hidden;
   background: url("../assets/images/decor.png") no-repeat center top / contain;
   background-color: var(--xmas-dark-red);
   color: var(--snow-white);
