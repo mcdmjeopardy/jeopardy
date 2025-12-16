@@ -99,6 +99,7 @@ main {
   -webkit-backdrop-filter: blur(20px);
   opacity: 0.9;
   box-shadow: var(--shadow-gift);
+  min-height: 60vh;
 }
 main:has(.columns){
  min-height: none;
