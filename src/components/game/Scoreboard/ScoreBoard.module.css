@@ -9,7 +9,10 @@
 .teamcard {
   width: 250px;
   height: 150px;
-  background-color: var(--xmas-light-green);
+  background: var(--xmas-green);
+  opacity: 0.6;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   place-content: center;
   display: flex;
   flex-direction: column;
