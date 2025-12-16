@@ -40,7 +40,7 @@ const GameBoard = () => {
       ) : (
         <>
           <header>
-            <h1 className={styles.gameTitle}>{currentGame.name}</h1>
+            <h1 className={styles.gameTitle}>Christmas Jeopardy</h1>
           </header>
           <main>
             <div className={cn(styles, `columns`)}>
