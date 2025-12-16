@@ -2,7 +2,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GameCreator from "./components/admin/GameCreator/GameCreator";
 import GameLobby from "./components/admin/GameLobby/GameLobby";
-import GameBoard from "./components/game/GameBoard/GameBoard";
 import EditProfile from "./components/admin/TeamEdit/TeamEdit";
 import AdminPanel from "./components/admin/AdminPanel/AdminPanel";
 
