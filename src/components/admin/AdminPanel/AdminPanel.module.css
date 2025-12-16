@@ -428,3 +428,21 @@
 .saveBtn:hover {
   background-color: #1b8a3d;
 }
+
+.reset-btn {
+  background-color: var(--xmas-red);
+  color: var(--snow-white);
+  border: 2px solid var(--snow-white);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: var(--font-subheading);
+  transition: all 0.2s ease;
+  margin-block: 10px;
+}
+
+.reset-btn:hover {
+  background-color: #ff4444;
+  color: white;
+}
