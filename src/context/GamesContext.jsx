@@ -129,26 +129,11 @@ export function GamesProvider({ children }) {
         saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, game._id);
 
       } else {
-        // FALLBACK LOGIC: Check name "Ultimate" only if no ID in env.
-        // This is legacy behavior to prevent crashes during dev without env vars.
-        const response = await gamesApi.getGames();
-        const allGames = response.data || response;
-
-        // STRICT Filtering: Only show the game called "Ultimate"
-        const ourGames = allGames.filter(g => g.name === "Ultimate");
-
-        setGames(ourGames);
-
-        // Force selection of "Ultimate" game if found
-        const ultimateGame = ourGames.find(g => g.name === "Ultimate");
-
-        if (ultimateGame) {
-           setCurrentGame(ultimateGame);
-           saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, ultimateGame._id);
-        } else {
-            setCurrentGame(null);
-            removeFromStorage(STORAGE_KEYS.SELECTED_GAME_ID);
-        }
+        // Enforce strict ID usage
+        console.warn("VITE_ULTIMATE_GAME_ID is missing in .env. No game loaded.");
+        setGames([]);
+        setCurrentGame(null);
+        removeFromStorage(STORAGE_KEYS.SELECTED_GAME_ID);
       }
     } catch (err) {
       console.error("Failed to fetch games", err);
