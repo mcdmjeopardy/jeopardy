@@ -5,12 +5,72 @@ import styles from "./AdminPanel.module.css";
 
 
 const AdminPanel = () => {
-  const { games, currentGame, loading } = useGames();
+  const { games, currentGame, updateGame, loading } = useGames();
   const [activeTab, setActiveTab] = useState("questions"); // "questions" or "categories"
+
+  // Editing State
+  const [editingCategory, setEditingCategory] = useState(null); // { index, name }
+  const [editingQuestion, setEditingQuestion] = useState(null); // { questionId, ...data }
 
   // Resolve which game to manage
   // PRIMARY: Env Logic via GamesContext
   const gameToManage = currentGame || games[0];
+
+  // ==========================
+  // HANDLERS
+  // ==========================
+
+  const handleEditCategory = (index) => {
+    if (!gameToManage) return;
+    const cat = gameToManage.categories[index];
+    setEditingCategory({ index, name: cat.name });
+  };
+
+  const handleSaveCategory = async () => {
+    if (!editingCategory || !gameToManage) return;
+
+    // Create deep copy of categories
+    const newCategories = [...gameToManage.categories];
+    newCategories[editingCategory.index] = {
+        ...newCategories[editingCategory.index],
+        name: editingCategory.name
+    };
+
+    await updateGame(gameToManage._id, { categories: newCategories });
+    setEditingCategory(null);
+  };
+
+  const handleEditQuestion = (questionData) => {
+    // questionData comes from flat map: { ..., categoryName, id: "catIdx-qIdx" }
+    // We need to parse indices.
+    const [catIdx, qIdx] = questionData.id.split('-').map(Number);
+
+    setEditingQuestion({
+        ...questionData,
+        catIdx,
+        qIdx
+    });
+  };
+
+  const handleSaveQuestion = async () => {
+    if (!editingQuestion || !gameToManage) return;
+
+    const { catIdx, qIdx, question, answer, value } = editingQuestion;
+
+    // Deep copy categories
+    const newCategories = [...gameToManage.categories];
+    // Update specific question
+    newCategories[catIdx].questions[qIdx] = {
+        ...newCategories[catIdx].questions[qIdx],
+        question,
+        answer,
+        value: Number(value)
+    };
+
+    await updateGame(gameToManage._id, { categories: newCategories });
+    setEditingQuestion(null);
+  };
+
 
   // Flatten questions helper
   const getAllQuestions = () => {
@@ -59,7 +119,12 @@ const AdminPanel = () => {
               <td>{cat.name}</td>
               <td>{cat.questions ? cat.questions.length : 0} Questions</td>
               <td>
-                <button className={cn(styles, `button-question`)}>Edit</button>
+                <button
+                    className={cn(styles, `button-question`)}
+                    onClick={() => handleEditCategory(idx)}
+                >
+                    Edit
+                </button>
               </td>
             </tr>
         ));
@@ -78,8 +143,15 @@ const AdminPanel = () => {
           </td>
           <td>{q.categoryName}</td>
           <td>{q.value}</td>
-          <td>
-            <button className={cn(styles, `button-status`)} style={{ backgroundColor: q.answered ? '#666' : 'var(--xmas-green)' }}>
+          <td style={{display: 'flex', gap: '10px'}}>
+             <button
+                className={cn(styles, `button-question`)}
+                style={{width: 'auto', paddingInline: '15px'}}
+                onClick={() => handleEditQuestion(q)}
+            >
+              Edit
+            </button>
+            <button className={cn(styles, `button-status`)} style={{ backgroundColor: q.answered ? '#666' : 'var(--xmas-green)', width: 'auto', paddingInline: '15px' }}>
               {q.answered ? "Used" : "Active"}
             </button>
           </td>
@@ -130,7 +202,7 @@ const AdminPanel = () => {
                     <th className={cn(styles, `Question-tag`)}>Question</th>
                     <th className={cn(styles, `Category`)}>Category</th>
                     <th className={cn(styles, `Status-tag`)}>Value</th>
-                    <th className={cn(styles, `Status-tag`)}>Status</th>
+                    <th className={cn(styles, `Status-tag`)}>Actions</th>
                     </>
                 ) : (
                     <>
@@ -147,6 +219,72 @@ const AdminPanel = () => {
             </table>
         </div>
       </main>
+
+      {/* MODALS */}
+
+      {/* Category Edit Modal */}
+      {editingCategory && (
+        <div className={styles.modalBackground} onClick={() => setEditingCategory(null)}>
+            <div className={styles.modal} onClick={e => e.stopPropagation()}>
+                <div className={styles.header}>
+                    Edit Category
+                    <button className={styles.closeBtn} onClick={() => setEditingCategory(null)}>×</button>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.formGroup}>
+                        <label>Category Name</label>
+                        <input
+                            className={styles.input}
+                            value={editingCategory.name}
+                            onChange={(e) => setEditingCategory({...editingCategory, name: e.target.value})}
+                        />
+                    </div>
+                    <button className={styles.saveBtn} onClick={handleSaveCategory}>SAVE CHANGES</button>
+                </div>
+            </div>
+        </div>
+      )}
+
+      {/* Question Edit Modal */}
+      {editingQuestion && (
+        <div className={styles.modalBackground} onClick={() => setEditingQuestion(null)}>
+            <div className={styles.modal} onClick={e => e.stopPropagation()}>
+                <div className={styles.header}>
+                    Edit Question
+                    <button className={styles.closeBtn} onClick={() => setEditingQuestion(null)}>×</button>
+                </div>
+                <div className={styles.content}>
+                    <div className={styles.formGroup}>
+                        <label>Question Text</label>
+                        <textarea
+                            className={cn(styles, 'input', 'textarea')}
+                            value={editingQuestion.question}
+                            onChange={(e) => setEditingQuestion({...editingQuestion, question: e.target.value})}
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Answer</label>
+                        <textarea
+                            className={cn(styles, 'input', 'textarea')}
+                            value={editingQuestion.answer}
+                            onChange={(e) => setEditingQuestion({...editingQuestion, answer: e.target.value})}
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Value (Points)</label>
+                        <input
+                            type="number"
+                            className={styles.input}
+                            value={editingQuestion.value}
+                            onChange={(e) => setEditingQuestion({...editingQuestion, value: e.target.value})}
+                        />
+                    </div>
+                    <button className={styles.saveBtn} onClick={handleSaveQuestion}>SAVE CHANGES</button>
+                </div>
+            </div>
+        </div>
+      )}
+
     </div>
   );
 };
