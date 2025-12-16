@@ -14,7 +14,7 @@ body {
   color: var(--snow-white);
   gap: 2rem;
   position: relative;
-  padding: 8px 8px 0px 8px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,21 +31,24 @@ body {
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100%;
+  width: fit-content;
+  padding-inline: 2rem;
+  place-self: center;
   font-size: 2rem;
   text-transform: uppercase;
-  background-color: var(--xmas-light-green);
+  background-color: var(--xmas-green);
   opacity: 0.9;
   text-align: center;
   border-radius: var(--border-radius-snow);
   box-shadow: var(--shadow-gift);
   height: 70px;
+  border: 2px solid lightpink;
 }
 h1 {
   font-family: var(--font-heading);
