@@ -71,6 +71,21 @@ const AdminPanel = () => {
     setEditingQuestion(null);
   };
 
+  const handleResetGame = async () => {
+    if (!gameToManage) return;
+
+    if (!window.confirm("ARE YOU SURE? This will reset all questions in this game to 'Active'. This cannot be undone.")) {
+        return;
+    }
+
+    const resetCategories = gameToManage.categories.map(cat => ({
+        ...cat,
+        questions: cat.questions.map(q => ({ ...q, answered: false }))
+    }));
+
+    await updateGame(gameToManage._id, { categories: resetCategories });
+  };
+
 
   // Flatten questions helper
   const getAllQuestions = () => {
@@ -169,9 +184,16 @@ const AdminPanel = () => {
       {/* Main tag for global layout, inner div for Admin styles */}
       <main>
         <div className={cn(styles, `admin-main`)}>
-            <h2 className={cn(styles, `heading`)}>
-            {gameToManage ? `Managing: ${gameToManage.name}` : "Admin Panel"}
-            </h2>
+
+            {/* Reset Game Button */}
+            {gameToManage && (
+                <button
+                    className={cn(styles, `reset-btn`)}
+                    onClick={handleResetGame}
+                >
+                    RESET GAME
+                </button>
+            )}
 
             <div className={cn(styles, `radio-inputs`)}>
             <label className={cn(styles, `radio`)}>

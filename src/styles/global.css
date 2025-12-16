@@ -31,7 +31,6 @@ body {
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-
   gap: 1rem;
 }
 header {
@@ -92,12 +91,14 @@ main {
   flex-direction: column;
   align-items: center;
   border-radius: var(--border-radius-snow);
-  background-color: var(--snow-white);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   opacity: 0.9;
   box-shadow: var(--shadow-gift);
-  min-height: calc(100vh - 14rem);
-
-
+}
+main:has(.columns){
+ min-height: none;
 }
 footer {
   display: flex;
@@ -113,6 +114,7 @@ footer {
 }
 
 .tile {
+  border: 2px solid lightpink;
   font-size: 24px;
   text-align: center;
   padding: 26px 0;
