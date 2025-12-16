@@ -1,14 +1,17 @@
-import React from "react";
-import styles from "./QuestionTile.module.css";
 import { cn } from "../../../functions/setStyles";
+import styles from "./QuestionTile.module.css";
 
-const QuestionTile = ({ ms, onTileClick }) => {
+const QuestionTile = ({ value, answered, onClick }) => {
+  if (answered) {
+    return <div className={cn(styles, `container tilebg used`, `tile`)}>{value}</div>;
+  }
+
   return (
     <div
-      className={cn(styles, `${ms} container tilebg`, `tile`)}
-      onClick={onTileClick}
+      className={cn(styles, `container tilebg`, `tile`)}
+      onClick={onClick}
     >
-      100
+      {value}
     </div>
   );
 };

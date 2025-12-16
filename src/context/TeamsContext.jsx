@@ -1,21 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { teamsApi } from "../api";
-import { APP_ID, useGames } from "./GamesContext";
+import { useGames } from "./GamesContext";
 
-/*
- * TEAMS CONTEXT
- *
- * This file manages all team-related data for our Jeopardy app.
- *
- * What it does:
- * - Stores the list of teams we've created
- * - Stores the avatar images teams can choose from
- * - Handles score updates (adding/subtracting points)
- *
- * How to use in a component:
- *   import { useTeams } from "../context";
- *   const { teams, teamImages, addScore } = useTeams();
- */
+// TEAMS CONTEXT
+// Manages teams, avatars, and scoring.
 
 // ===========================================
 // THE CONTEXT
@@ -71,9 +59,7 @@ export function TeamsProvider({ children }) {
       const allTeamsData = response.data || response;
 
       // Only keep teams that belong to us (or old teams without appId)
-      const ourTeams = allTeamsData.filter(
-        (team) => team.appId === APP_ID || !team.appId
-      );
+      const ourTeams = allTeamsData;
 
       setAllTeams(ourTeams);
       return ourTeams;
@@ -90,7 +76,6 @@ export function TeamsProvider({ children }) {
   // These are preset images teams can choose as their profile picture
   async function fetchTeamImages() {
     try {
-      // Note: This endpoint returns an array directly, not { data: [...] }
       const images = await teamsApi.getTeamImages();
       setTeamImages(images);
       return images;
@@ -123,9 +108,7 @@ export function TeamsProvider({ children }) {
 
   // Create a new team
   async function createTeam(teamData) {
-    // Add our APP_ID so the team belongs to us
-    const dataWithAppId = { ...teamData, appId: APP_ID };
-    const response = await teamsApi.createTeam(dataWithAppId);
+    const response = await teamsApi.createTeam(teamData);
     const newTeam = response.data || response;
 
     // Add to our list
@@ -134,10 +117,13 @@ export function TeamsProvider({ children }) {
   }
 
   // Update a team (change name, avatar, etc.)
+  // Update a team (change name, avatar, etc.)
   async function updateTeam(id, teamData) {
-    const dataWithAppId = { ...teamData, appId: APP_ID };
-    const response = await teamsApi.updateTeam(id, dataWithAppId);
-    const updatedTeam = response.data || response;
+    const response = await teamsApi.updateTeam(id, teamData);
+
+    const responseData = response.data || response;
+    // Merge input data to ensure UI updates even if API returns partial response
+    const updatedTeam = { ...responseData, ...teamData };
 
     // Update it in our list
     setAllTeams((prev) =>
@@ -181,7 +167,11 @@ export function TeamsProvider({ children }) {
   // Use this when a team answers correctly!
   // Example: await addScore(teamId, 200)  // Adds 200 points
   async function addScore(teamId, points) {
-    const response = await teamsApi.updateScore(teamId, `+${points}`);
+    const team = allTeams.find((t) => t._id === teamId);
+    if (!team) return;
+    const newScore = (team.score || 0) + points;
+
+    const response = await teamsApi.updateScore(teamId, newScore);
     const updatedTeam = response.data || response;
     updateTeamInState(updatedTeam);
     return updatedTeam;
@@ -191,7 +181,11 @@ export function TeamsProvider({ children }) {
   // Use this to penalize wrong answer
   // Example: await subtractScore(teamId, 100)  // Removes 100 points
   async function subtractScore(teamId, points) {
-    const response = await teamsApi.updateScore(teamId, `-${points}`);
+    const team = allTeams.find((t) => t._id === teamId);
+    if (!team) return;
+    const newScore = (team.score || 0) - points;
+
+    const response = await teamsApi.updateScore(teamId, newScore);
     const updatedTeam = response.data || response;
     updateTeamInState(updatedTeam);
     return updatedTeam;

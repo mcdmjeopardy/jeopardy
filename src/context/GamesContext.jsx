@@ -1,28 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { gamesApi } from "../api";
 
-/*
- * GAMES CONTEXT
- *
- * This file manages all game-related data for our Jeopardy app.
- *
- * What it does:
- * - Stores the list of games we've created
- * - Keeps track of which game we're currently playing
- * - Manages the question modal (which tile is clicked, show/hide answer)
- * - Saves your progress to localStorage so refresh doesn't lose it
- *
- * How to use in a component:
- *   import { useGames } from "../context";
- *   const { games, currentGame, selectGame } = useGames();
- */
+// GAMES CONTEXT
+// Manages games, question modal state, and persistence.
 
-// ===========================================
-// APP ID - Very Important!
-// ===========================================
-// We share a database with other school teams.
-// This ID tags all our games so we only see ours, not theirs.
-export const APP_ID = "jeopardy-team-jannik";
+
 
 // ===========================================
 // LOCALSTORAGE
@@ -136,20 +118,24 @@ export function GamesProvider({ children }) {
       const response = await gamesApi.getGames();
       const allGames = response.data || response;
 
-      // Only keep games that belong to us (matching our APP_ID)
-      const ourGames = allGames.filter((game) => game.appId === APP_ID);
+      // STRICT Filtering: Only show the game called "Ultimate"
+      // per user request: "make sure ONLY to show the game called Ultimate"
+      const ourGames = allGames.filter(g => g.name === "Ultimate");
+
       setGames(ourGames);
 
-      // Check if we had a game selected before refresh
-      const savedGameId = loadFromStorage(STORAGE_KEYS.SELECTED_GAME_ID);
-      if (savedGameId && !currentGame) {
-        const savedGame = ourGames.find((g) => g._id === savedGameId);
-        if (savedGame) {
-          setCurrentGame(savedGame);
-        } else {
-          // Game doesn't exist anymore, clear it
+      // Force selection of "Ultimate" game if found
+      const ultimateGame = ourGames.find(g => g.name === "Ultimate");
+
+      if (ultimateGame) {
+         setCurrentGame(ultimateGame);
+         saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, ultimateGame._id);
+      } else {
+          // If Ultimate game is not found (e.g. not in DB yet and local seed missing),
+          // we show nothing or wait.
+          setCurrentGame(null);
+          // Fallback: Clear storage if we can't find the mandatory game
           removeFromStorage(STORAGE_KEYS.SELECTED_GAME_ID);
-        }
       }
     } catch (err) {
       console.error("Failed to fetch games", err);
@@ -168,10 +154,7 @@ export function GamesProvider({ children }) {
       const response = await gamesApi.getGame(id);
       const game = response.data || response;
 
-      // Safety: don't let us access other teams' games
-      if (game.appId && game.appId !== APP_ID) {
-        throw new Error("Dette spil tilhører ikke din app");
-      }
+
 
       setCurrentGame(game);
       saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, game._id);
@@ -206,9 +189,8 @@ export function GamesProvider({ children }) {
 
   // Create a new game
   async function createGame(gameData) {
-    // Add our APP_ID so the game belongs to us
-    const dataWithAppId = { ...gameData, appId: APP_ID };
-    const response = await gamesApi.createGame(dataWithAppId);
+
+    const response = await gamesApi.createGame(gameData);
     const newGame = response.data || response;
 
     // Add to our list
@@ -218,8 +200,7 @@ export function GamesProvider({ children }) {
 
   // Update an existing game (change name, categories, etc.)
   async function updateGame(id, gameData) {
-    const dataWithAppId = { ...gameData, appId: APP_ID };
-    const response = await gamesApi.updateGame(id, dataWithAppId);
+    const response = await gamesApi.updateGame(id, gameData);
     const updatedGame = response.data || response;
 
     // Update it in our list
@@ -236,11 +217,7 @@ export function GamesProvider({ children }) {
 
   // Delete a game
   async function deleteGame(id) {
-    // Safety: only delete our own games
-    const gameToDelete = games.find((g) => g._id === id);
-    if (gameToDelete?.appId && gameToDelete.appId !== APP_ID) {
-      throw new Error("Kan ikke slette et spil der ikke tilhører din app");
-    }
+
 
     await gamesApi.deleteGame(id);
 
@@ -323,7 +300,6 @@ export function GamesProvider({ children }) {
     currentGame, // The game we're playing (or null)
     loading, // True while loading
     error, // Error message (or null)
-    appId: APP_ID, // Our unique app ID
 
     // Question modal state
     currentQuestion, // { categoryIndex, questionIndex, showAnswer } or null

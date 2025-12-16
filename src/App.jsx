@@ -1,9 +1,8 @@
 // Import Global Styles
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GameCreator from "./components/admin/GameCreator/GameCreator";
+import AdminPanel from "./components/admin/AdminPanel/AdminPanel";
 import GameLobby from "./components/admin/GameLobby/GameLobby";
 import EditProfile from "./components/admin/TeamEdit/TeamEdit";
-import AdminPanel from "./components/admin/AdminPanel/AdminPanel";
 
 function App() {
   return (

@@ -122,6 +122,8 @@ footer {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   border: 1px solid #ddd;
   color: var(--snow-white);
@@ -142,5 +144,8 @@ th, td{
 
 tr:nth-child(even) {
   background-color: var(--xmas-light-green);
+}
+tr:nth-child(odd) {
+  background-color: var(--xmas-green);
 }
 

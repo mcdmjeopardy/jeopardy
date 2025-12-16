@@ -1,46 +1,62 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useGames } from "../../../context/GamesContext";
 import { cn } from "../../../functions/setStyles";
 import QuestionModal from "../../common/QuestionModal/QuestionModal";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
-import styles from "./GameBoard.module.css";
 import ScoreBoard from "../Scoreboard/ScoreBoard";
+import styles from "./GameBoard.module.css";
 
 const GameBoard = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [tile, setTile] = useState(0);
+  const {
+    currentGame,
+    currentQuestion,
+    setCurrentQuestion,
+    closeQuestion
+  } = useGames();
 
-  const openModal = () => {
-    setModalOpen(true);
-    setTile(1); // test idea to set a variable to the tile's question ID
-  };
+  const navigate = useNavigate();
 
-  const closeModal = () => {
-    setModalOpen(false);
+  // If no game is selected, go back to lobby
+  useEffect(() => {
+    if (!currentGame) {
+      navigate("/");
+    }
+  }, [currentGame, navigate]);
+
+  if (!currentGame) return null;
+
+  const handleTileClick = (categoryIndex, questionIndex) => {
+    const question = currentGame.categories[categoryIndex].questions[questionIndex];
+    if (!question.answered) {
+      setCurrentQuestion({ categoryIndex, questionIndex, ...question });
+    }
   };
 
   return (
     <div className={cn(styles, ``, "container")}>
-      {isModalOpen ? (
-        <QuestionModal question={tile} closeModal={closeModal} />
+      {currentQuestion ? (
+        <QuestionModal question={currentQuestion} closeModal={closeQuestion} />
       ) : (
         <>
           <header>
-            <h1> Jeopardy</h1>
+            <h1 className={styles.gameTitle}>{currentGame.name}</h1>
           </header>
           <main>
             <div className={cn(styles, `columns`)}>
-              {/* Temporary manual setup. It's supposed to generate a column per category from API. */}
-              <CategoryColumn title="Sange" onTileClick={openModal} />
-              <CategoryColumn title="Film" onTileClick={openModal} />
-              <CategoryColumn title="Mad" onTileClick={openModal} />
-              <CategoryColumn title="Julemand" onTileClick={openModal} />
-              <CategoryColumn title="Diverse" onTileClick={openModal} />
+              {currentGame.categories.map((category, index) => (
+                <CategoryColumn
+                  key={index}
+                  category={category}
+                  onTileClick={(qIndex) => handleTileClick(index, qIndex)}
+                />
+              ))}
             </div>
           </main>
         </>
       )}
 
-      <ScoreBoard ms={isModalOpen && "modal"} />
+      <ScoreBoard ms={currentQuestion && "modal"} />
     </div>
   );
 };

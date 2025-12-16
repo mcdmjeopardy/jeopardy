@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 2000;
 }
 
 .modal {
@@ -17,12 +17,25 @@
 }
 
 .header {
-  background: url("/images/christmas-banner.png") center/cover no-repeat;
+  position: relative;
+  background: var(--xmas-green) url("/images/christmas-banner.png") center/cover no-repeat;
   padding: 25px;
   text-align: center;
   color: white;
   font-weight: bold;
   font-size: 18px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .content {

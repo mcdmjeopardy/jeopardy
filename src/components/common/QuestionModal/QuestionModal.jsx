@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import styles from "./QuestionModal.module.css";
+import { useLayoutEffect, useRef, useState } from "react";
 import { cn } from "../../../functions/setStyles";
 import Button from "../Button/Button";
+import styles from "./QuestionModal.module.css";
 
 const QuestionModal = ({ question, closeModal }) => {
   const [isAnswerShown, setAnswerShown] = useState(false);
@@ -37,7 +37,7 @@ const QuestionModal = ({ question, closeModal }) => {
       className={cn(styles, `${!isAnswerShown && "answerHidden"} container`)}
     >
       <div className={cn(styles, "top")}>
-        <div className={cn(styles, "counter")}>100</div>
+        <div className={cn(styles, "counter")}>{question?.value}</div>
         <div className={styles.btns}>
           <Button
             content={isAnswerShown ? "Hide answer" : "Reveal answer"}
@@ -54,10 +54,10 @@ const QuestionModal = ({ question, closeModal }) => {
           style={{ transform: `translateY(${isAnswerShown ? 0 : shiftY}px)` }}
           className={cn(styles, "question")}
         >
-          Question
+          {question?.question}
         </div>
         <div ref={refLine} className={cn(styles, "line")} />
-        <div className={cn(styles, "answer")}>Answer</div>
+        <div className={cn(styles, "answer")}>{question?.answer}</div>
       </div>
     </main>
   );
