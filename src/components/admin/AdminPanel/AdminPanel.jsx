@@ -161,7 +161,7 @@ const AdminPanel = () => {
 
 
   return (
-    <div className={cn(styles, ``, "")}>
+    <div className={cn(styles, ``, "container")}>
       <header>
         <h1> Questions & Categories </h1>
       </header>
