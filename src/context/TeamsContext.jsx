@@ -35,6 +35,9 @@ export function TeamsProvider({ children }) {
       game.teams?.forEach((teamId) => {
         if (typeof teamId === "string") {
           ids.add(teamId);
+        } else if (teamId && typeof teamId === "object" && teamId._id) {
+          // Handle populated teams (if API returns objects instead of IDs)
+          ids.add(teamId._id);
         }
       });
     });

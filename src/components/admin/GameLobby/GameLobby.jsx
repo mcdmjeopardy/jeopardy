@@ -22,16 +22,13 @@ const GameLobby = () => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleStartGame = () => {
-    // Find the Christmas game or just the first available one
-    // In our seed data, we have one game. Use that.
-    // Find the Christmas game or just the first available one
-    // In our seed data, we have one game. Use that.
-    const game = games.find(g => g.name === "Ultimate");
+    // Use the loaded game directly
+    const game = currentGame || games[0];
     if (game) {
       selectGame(game);
       navigate("/game");
     } else {
-      alert("Ingen spil fundet! Prøv at genindlæse siden.");
+      alert("Ingen spil fundet! Tjek miljøvariabel VITE_ULTIMATE_GAME_ID.");
     }
   };
 

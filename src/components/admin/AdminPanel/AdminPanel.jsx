@@ -9,8 +9,8 @@ const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState("questions"); // "questions" or "categories"
 
   // Resolve which game to manage
-  // Strict: only show "Ultimate"
-  const gameToManage = currentGame?.name === "Ultimate" ? currentGame : games.find(g => g.name === "Ultimate");
+  // PRIMARY: Env Logic via GamesContext
+  const gameToManage = currentGame || games[0];
 
   // Flatten questions helper
   const getAllQuestions = () => {

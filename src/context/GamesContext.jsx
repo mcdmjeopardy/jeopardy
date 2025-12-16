@@ -109,37 +109,54 @@ export function GamesProvider({ children }) {
   // FETCH GAMES FROM API
   // ===========================================
 
-  // Load all games from the database
+  // Load games from the database
   async function fetchGames() {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await gamesApi.getGames();
-      const allGames = response.data || response;
+      const ultimateGameId = import.meta.env.VITE_ULTIMATE_GAME_ID;
 
-      // STRICT Filtering: Only show the game called "Ultimate"
-      // per user request: "make sure ONLY to show the game called Ultimate"
-      const ourGames = allGames.filter(g => g.name === "Ultimate");
+      if (ultimateGameId) {
+        // PRIMARY: Use specific game ID from environment (VITE_ULTIMATE_GAME_ID)
+        // This is the main way to filter the game.
+        const response = await gamesApi.getGame(ultimateGameId);
+        const game = response.data || response;
 
-      setGames(ourGames);
+        // Wrap in array for consistency
+        setGames([game]);
+        setCurrentGame(game);
+        saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, game._id);
 
-      // Force selection of "Ultimate" game if found
-      const ultimateGame = ourGames.find(g => g.name === "Ultimate");
-
-      if (ultimateGame) {
-         setCurrentGame(ultimateGame);
-         saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, ultimateGame._id);
       } else {
-          // If Ultimate game is not found (e.g. not in DB yet and local seed missing),
-          // we show nothing or wait.
-          setCurrentGame(null);
-          // Fallback: Clear storage if we can't find the mandatory game
-          removeFromStorage(STORAGE_KEYS.SELECTED_GAME_ID);
+        // FALLBACK LOGIC: Check name "Ultimate" only if no ID in env.
+        // This is legacy behavior to prevent crashes during dev without env vars.
+        const response = await gamesApi.getGames();
+        const allGames = response.data || response;
+
+        // STRICT Filtering: Only show the game called "Ultimate"
+        const ourGames = allGames.filter(g => g.name === "Ultimate");
+
+        setGames(ourGames);
+
+        // Force selection of "Ultimate" game if found
+        const ultimateGame = ourGames.find(g => g.name === "Ultimate");
+
+        if (ultimateGame) {
+           setCurrentGame(ultimateGame);
+           saveToStorage(STORAGE_KEYS.SELECTED_GAME_ID, ultimateGame._id);
+        } else {
+            setCurrentGame(null);
+            removeFromStorage(STORAGE_KEYS.SELECTED_GAME_ID);
+        }
       }
     } catch (err) {
       console.error("Failed to fetch games", err);
+      // For a smoother UX, we might not want to show a hard error if it's just missing
+      // but if the API fails, we should know.
       setError(err.message || "Kunne ikke hente spil");
+      setGames([]);
+      setCurrentGame(null);
     } finally {
       setLoading(false);
     }
