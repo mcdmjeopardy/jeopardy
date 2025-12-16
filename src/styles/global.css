@@ -124,8 +124,10 @@ table {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 1280px;
   border: 1px solid #ddd;
   color: var(--snow-white);
+  border-radius: var(--border-radius-snow);
 }
 
 tr{
@@ -148,4 +150,8 @@ tr:nth-child(even) {
 }
 tr:nth-child(odd) {
   background-color: var(--xmas-green);
+}
+thead tr {
+border-top-left-radius: var(--border-radius-snow);
+border-top-right-radius: var(--border-radius-snow);
 }

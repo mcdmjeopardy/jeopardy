@@ -143,16 +143,16 @@ const AdminPanel = () => {
           </td>
           <td>{q.categoryName}</td>
           <td>{q.value}</td>
-          <td style={{display: 'flex', gap: '10px'}}>
+          <td style={{display: 'flex', gap: '10px', justifyContent: 'space-between'}}>
+            <button className={cn(styles, `button-status`)} style={{ backgroundColor: q.answered ? '#666' : 'var(--xmas-green)', width: 'auto', paddingInline: '15px' }}>
+              {q.answered ? "Used" : "Active"}
+            </button>
              <button
                 className={cn(styles, `button-question`)}
                 style={{width: 'auto', paddingInline: '15px'}}
                 onClick={() => handleEditQuestion(q)}
             >
               Edit
-            </button>
-            <button className={cn(styles, `button-status`)} style={{ backgroundColor: q.answered ? '#666' : 'var(--xmas-green)', width: 'auto', paddingInline: '15px' }}>
-              {q.answered ? "Used" : "Active"}
             </button>
           </td>
         </tr>
@@ -202,7 +202,12 @@ const AdminPanel = () => {
                     <th className={cn(styles, `Question-tag`)}>Question</th>
                     <th className={cn(styles, `Category`)}>Category</th>
                     <th className={cn(styles, `Status-tag`)}>Value</th>
-                    <th className={cn(styles, `Status-tag`)}>Actions</th>
+                    <th className={cn(styles, `Status-tag`)}>
+                        <div style={{display: 'flex', justifyContent: 'space-between', paddingInline: '15px'}}>
+                            <span>Status</span>
+                            <span>Actions</span>
+                        </div>
+                    </th>
                     </>
                 ) : (
                     <>
@@ -224,8 +229,8 @@ const AdminPanel = () => {
 
       {/* Category Edit Modal */}
       {editingCategory && (
-        <div className={styles.modalBackground} onClick={() => setEditingCategory(null)}>
-            <div className={styles.modal} onClick={e => e.stopPropagation()}>
+        <div className={styles.modalBackground} onClick={(e) => e.target === e.currentTarget && setEditingCategory(null)}>
+            <div className={styles.modal}>
                 <div className={styles.header}>
                     Edit Category
                     <button className={styles.closeBtn} onClick={() => setEditingCategory(null)}>×</button>
@@ -247,8 +252,8 @@ const AdminPanel = () => {
 
       {/* Question Edit Modal */}
       {editingQuestion && (
-        <div className={styles.modalBackground} onClick={() => setEditingQuestion(null)}>
-            <div className={styles.modal} onClick={e => e.stopPropagation()}>
+        <div className={styles.modalBackground} onClick={(e) => e.target === e.currentTarget && setEditingQuestion(null)}>
+            <div className={styles.modal}>
                 <div className={styles.header}>
                     Edit Question
                     <button className={styles.closeBtn} onClick={() => setEditingQuestion(null)}>×</button>
