@@ -9,7 +9,6 @@
 }
 
 body {
-  overflow: hidden;
   background: url("../assets/images/decor.png") no-repeat center top / contain;
   background-color: var(--xmas-dark-red);
   color: var(--snow-white);
@@ -140,7 +139,9 @@ tr{
 th, td{
     text-align: left;
     padding: 16px;
+    width: 100%;
 }
+
 
 tr:nth-child(even) {
   background-color: var(--xmas-light-green);
@@ -148,4 +149,3 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: var(--xmas-green);
 }
-

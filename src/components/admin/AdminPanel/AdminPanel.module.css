@@ -1,8 +1,10 @@
 .admin-main{
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding-block: 40px;
     gap: 40px;
+    align-items: center;
+    width: 100%;
 }
 
 
@@ -281,7 +283,7 @@
 }
 
 .category-table-header {
-  background-color: var(--xmas-red);
+  background-color: var(--xmas-red) !important;
   color: var(--snow-white);
   font-family: var(--font-subheading);
   font-size: 1.2rem;
