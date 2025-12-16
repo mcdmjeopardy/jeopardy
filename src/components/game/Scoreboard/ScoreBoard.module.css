@@ -80,3 +80,32 @@
   width: 32px;
   height: 32px;
 }
+
+/* Grinch animation stuff!! */
+.grinch {
+  --grinchWidth: 128px;
+
+  pointer-events: none;
+  z-index: 2;
+  position: fixed;
+  width: 128px;
+  left: 0;
+  bottom: 0;
+
+  transform: translateX(calc(var(--grinchWidth) * -1));
+  will-change: transform;
+
+  img {
+    width: 100%;
+  }
+}
+
+.grinch.active {
+   animation: grinch-run 5s ease-in-out forwards;
+}
+
+@keyframes grinch-run {
+  to {
+    transform: translateX(calc(100vw + var(--grinchWidth)));
+  }
+}

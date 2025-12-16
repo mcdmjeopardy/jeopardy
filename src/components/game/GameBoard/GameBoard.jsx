@@ -6,6 +6,7 @@ import QuestionModal from "../../common/QuestionModal/QuestionModal";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import ScoreBoard from "../Scoreboard/ScoreBoard";
 import styles from "./GameBoard.module.css";
+import Button from "../../common/Button/Button";
 
 const GameBoard = () => {
   const {

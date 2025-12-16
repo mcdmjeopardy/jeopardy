@@ -13,39 +13,114 @@ import { useGames } from "../../../context/GamesContext";
 import { useTeams } from "../../../context/TeamsContext";
 import { AVATAR_MAP } from "../../../utils/avatarMap";
 
+import grinchImg from "../../../assets/images/grinch.webp";
+import { useEffect, useRef, useState } from "react";
+
 const ScoreBoard = ({ ms }) => {
   const { teams, addScore, subtractScore } = useTeams();
   const { currentQuestion, markQuestionAnswered, closeQuestion } = useGames();
+
+  const [getGrinchActive, setGrinchActive] = useState(false);
+  const grinchTimeoutRef = useRef(null);
 
   // Sort teams by score for ranking
   const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
 
   const getRankIcon = (teamId) => {
     // If all teams have 0 points, don't show any ranks
-    if (teams.every(t => t.score === 0)) return null;
+    if (teams.every((t) => t.score === 0)) return null;
 
-    const index = sortedTeams.findIndex(t => t._id === teamId);
-    if (index === 0) return <HugeiconsIcon icon={MedalFirstPlaceIcon} size={40} color="#f0c435" strokeWidth={1.5} />;
-    if (index === 1) return <HugeiconsIcon icon={MedalSecondPlaceIcon} size={40} color="#bababaff" strokeWidth={1.5} />;
-    if (index === 2) return <HugeiconsIcon icon={MedalThirdPlaceIcon} size={40} color="#cc7d16ff" strokeWidth={1.5} />;
-    if (index === sortedTeams.length - 1 && sortedTeams.length > 3) return <HugeiconsIcon icon={CryingIcon} size={24} color="#fa0a1a" strokeWidth={1.5} />;
+    const index = sortedTeams.findIndex((t) => t._id === teamId);
+    if (index === 0)
+      return (
+        <HugeiconsIcon
+          icon={MedalFirstPlaceIcon}
+          size={40}
+          color="#f0c435"
+          strokeWidth={1.5}
+        />
+      );
+    if (index === 1)
+      return (
+        <HugeiconsIcon
+          icon={MedalSecondPlaceIcon}
+          size={40}
+          color="#bababaff"
+          strokeWidth={1.5}
+        />
+      );
+    if (index === 2)
+      return (
+        <HugeiconsIcon
+          icon={MedalThirdPlaceIcon}
+          size={40}
+          color="#cc7d16ff"
+          strokeWidth={1.5}
+        />
+      );
+    if (index === sortedTeams.length - 1 && sortedTeams.length > 3)
+      return (
+        <HugeiconsIcon
+          icon={CryingIcon}
+          size={24}
+          color="#fa0a1a"
+          strokeWidth={1.5}
+        />
+      );
     return null;
   };
+
+  // Grinch function
+  const startGrinch = () => {
+    // Reset current Grinch.
+    setGrinchActive(false);
+    if (grinchTimeoutRef.current) {
+      clearTimeout(grinchTimeoutRef.current);
+      grinchTimeoutRef.current = null;
+    }
+    // Activate Grinch. Double animation frame to remove other grinch first, then start new.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setGrinchActive(true);
+      });
+    });
+    // Automatically remove active if timer runs out.
+    grinchTimeoutRef.current = setTimeout(() => {
+      setGrinchActive(false);
+      grinchTimeoutRef.current = null;
+    }, 5000);
+  };
+
+  // Stop Grinch function if element is removed.
+  useEffect(() => {
+    return () => {
+      if (grinchTimeoutRef.current) clearTimeout(grinchTimeoutRef.current);
+    };
+  }, []);
 
   const handleCorrect = async (teamId) => {
     if (!currentQuestion) return;
     await addScore(teamId, currentQuestion.value);
-    await markQuestionAnswered(currentQuestion.categoryIndex, currentQuestion.questionIndex);
+    await markQuestionAnswered(
+      currentQuestion.categoryIndex,
+      currentQuestion.questionIndex
+    );
     closeQuestion();
   };
 
   const handleIncorrect = async (teamId) => {
-     if (!currentQuestion) return;
-     await subtractScore(teamId, currentQuestion.value);
+    if (!currentQuestion) return;
+    await subtractScore(teamId, currentQuestion.value);
+
+    startGrinch();
   };
 
   return (
     <div className={cn(styles, `${ms} container`)}>
+      <div className={cn(styles, `grinch ${getGrinchActive ? "active" : ""}`)}>
+        <img src={grinchImg} alt="Grinch!" />{" "}
+      </div>
+
       {teams.map((team) => (
         <div key={team._id} className={cn(styles, `teamcard`)}>
           <img
@@ -53,9 +128,7 @@ const ScoreBoard = ({ ms }) => {
             className={cn(styles, `avatar`)}
             alt={team.name}
           />
-          <div className={cn(styles, `icon`)}>
-            {getRankIcon(team._id)}
-          </div>
+          <div className={cn(styles, `icon`)}>{getRankIcon(team._id)}</div>
           <div className={cn(styles, `names`)}>
             <h3>{team.name}</h3>
           </div>
@@ -66,10 +139,16 @@ const ScoreBoard = ({ ms }) => {
           {/* Show controls only if modal is open (question active) */}
           {ms && currentQuestion && (
             <div className={styles.buttons}>
-              <button className={styles.button} onClick={() => handleCorrect(team._id)}>
+              <button
+                className={styles.button}
+                onClick={() => handleCorrect(team._id)}
+              >
                 <Check />
               </button>
-              <button className={styles.button} onClick={() => handleIncorrect(team._id)}>
+              <button
+                className={styles.button}
+                onClick={() => handleIncorrect(team._id)}
+              >
                 <X />
               </button>
             </div>
