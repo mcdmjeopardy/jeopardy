@@ -6,14 +6,14 @@ import QuestionModal from "../../common/QuestionModal/QuestionModal";
 import CategoryColumn from "../CategoryColumn/CategoryColumn";
 import ScoreBoard from "../Scoreboard/ScoreBoard";
 import styles from "./GameBoard.module.css";
-import Button from "../../common/Button/Button";
 
 const GameBoard = () => {
   const {
     currentGame,
     currentQuestion,
     setCurrentQuestion,
-    closeQuestion
+    closeQuestion,
+    markQuestionAnswered
   } = useGames();
 
   const navigate = useNavigate();
@@ -34,10 +34,20 @@ const GameBoard = () => {
     }
   };
 
+  const handleCloseQuestion = async () => {
+    if (currentQuestion) {
+      await markQuestionAnswered(
+        currentQuestion.categoryIndex,
+        currentQuestion.questionIndex
+      );
+      closeQuestion();
+    }
+  };
+
   return (
     <div className={cn(styles, ``, "container")}>
       {currentQuestion ? (
-        <QuestionModal question={currentQuestion} closeModal={closeQuestion} />
+        <QuestionModal question={currentQuestion} closeModal={handleCloseQuestion} />
       ) : (
         <>
           <header>

@@ -1,8 +1,8 @@
 import {
-  CryingIcon,
-  MedalFirstPlaceIcon,
-  MedalSecondPlaceIcon,
-  MedalThirdPlaceIcon,
+    CryingIcon,
+    MedalFirstPlaceIcon,
+    MedalSecondPlaceIcon,
+    MedalThirdPlaceIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { cn } from "../../../functions/setStyles";
@@ -124,11 +124,6 @@ const ScoreBoard = ({ ms }) => {
   const handleCorrect = async (teamId) => {
     if (!currentQuestion) return;
     await addScore(teamId, currentQuestion.value);
-    await markQuestionAnswered(
-      currentQuestion.categoryIndex,
-      currentQuestion.questionIndex
-    );
-    closeQuestion();
   };
 
   const handleIncorrect = async (teamId) => {
