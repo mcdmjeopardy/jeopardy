@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTeams } from "../../../context/TeamsContext";
 
@@ -8,6 +8,14 @@ import styles from "./TeamEdit.module.css";
 export default function TeamEdit({ onClose, onSave }) {
   const { currentTeam, updateTeam, createTeam, deleteTeam, teamImages, getAvatarUrl } = useTeams();
   const navigate = useNavigate();
+  const nameInputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus the name input when the modal opens
+    if (nameInputRef.current) {
+        nameInputRef.current.focus();
+    }
+  }, []);
 
   const handleDelete = async () => {
     if (!currentTeam || currentTeam.isNew) return;
@@ -108,6 +116,7 @@ export default function TeamEdit({ onClose, onSave }) {
 
             {/* Editable name input */}
             <input
+                ref={nameInputRef}
                 type="text"
                 className={styles.nameInput}
                 value={name}

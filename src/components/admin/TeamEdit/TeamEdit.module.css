@@ -61,9 +61,24 @@
   margin-bottom: 20px;
 }
 
-.teamName {
+.nameInput {
   margin-top: 15px;
-  font-size: 18px;
+  width: 90%;
+  padding: 8px 12px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #1b8a3d;
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  color: #333;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.nameInput:focus {
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .right {
