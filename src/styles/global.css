@@ -20,10 +20,6 @@ body {
   justify-content: flex-start;
   height: 100vh;
 }
-.app-container {
-  /* height: calc(100% - 14rem); */
-
-}
 .container {
   position: relative;
   height: 100%;
@@ -136,6 +132,7 @@ table {
   border: 1px solid #ddd;
   color: var(--snow-white);
   border-radius: var(--border-radius-snow);
+  border: none;
 }
 
 tr{
