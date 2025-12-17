@@ -14,7 +14,7 @@ import TeamEdit from "../TeamEdit/TeamEdit";
 import styles from "./GameLobby.module.css";
 
 const GameLobby = () => {
-  const { teams, createTeam, setCurrentTeam, getAvatarUrl } = useTeams();
+  const { teams, setCurrentTeam, getAvatarUrl } = useTeams();
   const { games, selectGame, currentGame, addTeamsToGame } = useGames();
   const navigate = useNavigate();
 

@@ -32,7 +32,7 @@ function loadFromStorage(key) {
   try {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
-  } catch (err) {
+  } catch {
     return null;
   }
 }
