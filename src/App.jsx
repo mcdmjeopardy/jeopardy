@@ -2,7 +2,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPanel from "./components/admin/AdminPanel/AdminPanel";
 import GameLobby from "./components/admin/GameLobby/GameLobby";
-import EditProfile from "./components/admin/TeamEdit/TeamEdit";
+import TeamEdit from "./components/admin/TeamEdit/TeamEdit";
 import GameBoard from "./components/game/GameBoard/GameBoard";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
           <Route path="/game" element={<GameBoard />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/" element={<GameLobby />} />
-          <Route path="/edit" element={<EditProfile />} />
+          <Route path="/edit" element={<TeamEdit />} />
         </Routes>
       </div>
     </BrowserRouter>

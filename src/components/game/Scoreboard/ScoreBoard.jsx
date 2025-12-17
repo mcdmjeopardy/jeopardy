@@ -11,13 +11,12 @@ import styles from "./ScoreBoard.module.css";
 import { Check, X } from "lucide-react";
 import { useGames } from "../../../context/GamesContext";
 import { useTeams } from "../../../context/TeamsContext";
-import { AVATAR_MAP } from "../../../utils/avatarMap";
 
-import grinchImg from "../../../assets/images/grinch.webp";
 import { useEffect, useRef, useState } from "react";
+import grinchImg from "../../../assets/images/grinch.webp";
 
 const ScoreBoard = ({ ms }) => {
-  const { teams, addScore, subtractScore } = useTeams();
+  const { teams, addScore, subtractScore, getAvatarUrl } = useTeams();
   const { currentQuestion, markQuestionAnswered, closeQuestion } = useGames();
 
   const [getGrinchActive, setGrinchActive] = useState(false);
@@ -150,7 +149,7 @@ const ScoreBoard = ({ ms }) => {
       {teams.map((team) => (
         <div key={team._id} className={cn(styles, `teamcard`)}>
           <img
-            src={AVATAR_MAP[team.avatar] || AVATAR_MAP.default}
+            src={getAvatarUrl(team.image || team.avatar)}
             className={cn(styles, `avatar`)}
             alt={team.name}
           />

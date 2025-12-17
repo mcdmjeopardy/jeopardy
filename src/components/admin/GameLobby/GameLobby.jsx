@@ -10,19 +10,17 @@ import lobby from "../../../assets/videos/Lobby.mp4";
 import { useGames } from "../../../context/GamesContext";
 import { useTeams } from "../../../context/TeamsContext";
 import { cn } from "../../../functions/setStyles";
-import { AVATAR_MAP } from "../../../utils/avatarMap";
 import TeamEdit from "../TeamEdit/TeamEdit";
 import styles from "./GameLobby.module.css";
 
 const GameLobby = () => {
-  const { teams, createTeam, setCurrentTeam } = useTeams();
+  const { teams, createTeam, setCurrentTeam, getAvatarUrl } = useTeams();
   const { games, selectGame, currentGame, addTeamsToGame } = useGames();
   const navigate = useNavigate();
 
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleStartGame = () => {
-    // Use the loaded game directly
     const game = currentGame || games[0];
     if (game) {
       selectGame(game);
@@ -84,11 +82,10 @@ const GameLobby = () => {
                   />
                 </button>
                 <img
-                  src={AVATAR_MAP[team.avatar] || AVATAR_MAP.default}
+                  src={getAvatarUrl(team.image || team.avatar)}
                   className={cn(styles, `avatar`)}
                   alt={team.name}
                 />
-                 {/* Rank/Status icons could go here if needed, keeping it simple for Lobby */}
                 <div className={cn(styles, `names`)}>
                   <h3>{team.name}</h3>
                 </div>

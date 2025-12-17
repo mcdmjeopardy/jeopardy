@@ -247,6 +247,20 @@ export function TeamsProvider({ children }) {
     addScore, // Add points (correct answer)
     subtractScore, // Remove points (wrong answer)
     setScore, // Set to specific number (reset)
+
+    // Helpers
+    getAvatarUrl: (avatarId) => {
+      // 1. If it's already a URL, return it
+      if (avatarId && (avatarId.startsWith("http") || avatarId.startsWith("data:"))) {
+         return avatarId;
+      }
+      // 2. Look up in our specific teamImages array
+      const found = teamImages.find((img) => img.id === avatarId);
+      if (found) return found.url;
+
+      // 3. Fallback: Lucide CircleUser icon data URI
+      return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3Cpath d='M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662'/%3E%3C/svg%3E";
+    }
   };
 
   return (
