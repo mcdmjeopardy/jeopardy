@@ -86,7 +86,7 @@
   --grinchWidth: 128px;
 
   pointer-events: none;
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   width: 128px;
   left: 0;
@@ -99,13 +99,37 @@
     width: 100%;
   }
 }
-
 .grinch.active {
-   animation: grinch-run 5s ease-in-out forwards;
+  animation: grinch-run 2.5s ease-in-out forwards;
 }
-
 @keyframes grinch-run {
   to {
     transform: translateX(calc(100vw + var(--grinchWidth)));
+  }
+}
+
+.flash {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  background-color: rgb(255, 255, 255);
+}
+.flash.active {
+  animation: page-flash 2500ms linear forwards;
+}
+@keyframes page-flash {
+  30% {
+    opacity: 0;
+  }
+  31% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
   }
 }

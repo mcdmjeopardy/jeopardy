@@ -22,6 +22,8 @@ const ScoreBoard = ({ ms }) => {
 
   const [getGrinchActive, setGrinchActive] = useState(false);
   const grinchTimeoutRef = useRef(null);
+  const [getFlashActive, setFlashActive] = useState(false);
+  const flashTimeoutRef = useRef(null);
 
   // Sort teams by score for ranking
   const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
@@ -72,6 +74,10 @@ const ScoreBoard = ({ ms }) => {
 
   // Grinch function
   const startGrinch = () => {
+
+    // Start flash.
+    startFlash()
+
     // Reset current Grinch.
     setGrinchActive(false);
     if (grinchTimeoutRef.current) {
@@ -88,7 +94,25 @@ const ScoreBoard = ({ ms }) => {
     grinchTimeoutRef.current = setTimeout(() => {
       setGrinchActive(false);
       grinchTimeoutRef.current = null;
-    }, 5000);
+    }, 2500);
+  };
+
+  const startFlash = () => {
+    setFlashActive(false);
+
+    if (flashTimeoutRef.current) {
+      clearTimeout(flashTimeoutRef.current);
+      flashTimeoutRef.current = null;
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setFlashActive(true));
+    });
+
+    flashTimeoutRef.current = setTimeout(() => {
+      setFlashActive(false);
+      flashTimeoutRef.current = null;
+    }, 2500);
   };
 
   // Stop Grinch function if element is removed.
@@ -117,6 +141,8 @@ const ScoreBoard = ({ ms }) => {
 
   return (
     <div className={cn(styles, `${ms} container`)}>
+
+      <div className={cn(styles, `flash ${getFlashActive ? "active" : ""}`)} />
       <div className={cn(styles, `grinch ${getGrinchActive ? "active" : ""}`)}>
         <img src={grinchImg} alt="Grinch!" />{" "}
       </div>
