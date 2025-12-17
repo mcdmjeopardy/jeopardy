@@ -48,6 +48,7 @@ export default function TeamEdit({ onClose, onSave }) {
         // If creating new team and images just loaded
         setSelectedAvatarId(teamImages[0].id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTeam, teamImages]);
 
   // Ensure we have a selection once images define or if previous selection was invalid

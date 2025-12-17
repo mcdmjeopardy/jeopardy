@@ -12,7 +12,7 @@ const GameCreator = () => {
   const [topic, setTopic] = useState("CHRISTMAS");
   const [selectedTeamIds, setSelectedTeamIds] = useState(new Set());
 
-  const { allTeams, fetchAllTeams, getAvatarUrl } = useTeams();
+  const { allTeams, getAvatarUrl } = useTeams();
   const { createGame, selectGame } = useGames();
   const navigate = useNavigate();
 
