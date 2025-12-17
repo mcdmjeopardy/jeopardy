@@ -12,11 +12,10 @@ const GameCreator = () => {
   const [topic, setTopic] = useState("CHRISTMAS");
   const [selectedTeamIds, setSelectedTeamIds] = useState(new Set());
 
-  const { allTeams, fetchAllTeams } = useTeams();
+  const { allTeams, fetchAllTeams, getAvatarUrl } = useTeams();
   const { createGame, selectGame } = useGames();
   const navigate = useNavigate();
 
-  // Load teams and select all by default
   useEffect(() => {
     if (allTeams.length > 0) {
         const ids = new Set(allTeams.map(t => t._id));
@@ -41,17 +40,6 @@ const GameCreator = () => {
     }
 
     try {
-        // Create a new game
-        // In a real app, we might ask for categories. Here we'll just clone the christmas one's structure or create a generic one.
-        // For now, let's assume creating a new game uses the standard Seed Categories (mocked in backend/service) or we just pass the name.
-        // The service needs to handle "default categories" if none provided.
-        // I'll update the component to pass the "Christmas" categories from the seed if needed,
-        // OR simpler: Just navigate to the key game.
-        // But this is "GameCreator". It should probably create a NEW game.
-
-        // Let's create a game with the topic name.
-        // Note: Our service currently expects us to provide categories or it might be empty.
-        // I'll clone the categories from the existing "Christmas Jeopardy" seed if possible, or just hardcode them here for safety since we want it to work "out of the box".
 
          const defaultCategories = [
             {
@@ -84,14 +72,11 @@ const GameCreator = () => {
     }
   }
 
-  // Helper to match TeamItem interface
-  // TeamItem expects { id, name, active, ... }
-  // Our teams have _id.
   const displayTeams = allTeams.map(t => ({
       ...t,
       id: t._id,
       active: selectedTeamIds.has(t._id),
-      icon: AVATAR_MAP[t.avatar] || AVATAR_MAP.default
+      icon: getAvatarUrl(t.image || t.avatar)
   }));
 
   return (
@@ -123,7 +108,7 @@ const GameCreator = () => {
             participantsCount={selectedTeamIds.size}
           />
           <div onClick={startGame} style={{ cursor: 'pointer' }}>
-             <Button content={"START GAME ▶"} link={null} />{/* Setup Button to accept onClick if link is null, or wrap it */}
+             <Button content={"START GAME ▶"} link={null} />
           </div>
         </main>
       </div>

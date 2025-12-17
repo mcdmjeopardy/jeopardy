@@ -1,14 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTeams } from "../../../context/TeamsContext";
 
-import { AVAILABLE_AVATARS, AVATAR_MAP } from "../../../utils/avatarMap";
 import Button from "../../common/Button/Button";
 import styles from "./TeamEdit.module.css";
 
 export default function TeamEdit({ onClose, onSave }) {
-  const { currentTeam, updateTeam, createTeam, deleteTeam } = useTeams();
+  const { currentTeam, updateTeam, createTeam, deleteTeam, teamImages, getAvatarUrl } = useTeams();
   const navigate = useNavigate();
+  const nameInputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus the name input when the modal opens
+    if (nameInputRef.current) {
+        nameInputRef.current.focus();
+    }
+  }, []);
 
   const handleDelete = async () => {
     if (!currentTeam || currentTeam.isNew) return;
@@ -20,25 +27,35 @@ export default function TeamEdit({ onClose, onSave }) {
   };
 
   const [name, setName] = useState("");
-  const [selectedAvatarId, setSelectedAvatarId] = useState(AVAILABLE_AVATARS[0].id);
+  // Initialize with first image if available, otherwise empty
+  const [selectedAvatarId, setSelectedAvatarId] = useState(teamImages[0]?.id || "");
 
   useEffect(() => {
     if (currentTeam) {
       setName(currentTeam.name);
-      // Map seed avatar names (e.g. "fairybread") to our local images if needed,
-      // or just use what we have.
-      // Seed uses: "fairybread" (juletræ), "gingerbread" (julmand), "rudolf" (icebear), "snowman" (julemandven)
-      let initialId = currentTeam.avatar;
 
-      // Fix seed mismatches for the UI
-      if (initialId === "fairybread") initialId = "juletræ";
-      if (initialId === "gingerbread") initialId = "julmand";
-      if (initialId === "rudolf") initialId = "icebear";
-      if (initialId === "snowman") initialId = "julemandven";
-
-      setSelectedAvatarId(initialId);
+      // If the team has an avatar ID, select it.
+      if (currentTeam.avatar) {
+          setSelectedAvatarId(currentTeam.avatar);
+      } else if (currentTeam.image) {
+          // If no ID but has image URL, try to find matching image
+          const matchingImg = teamImages.find(img => img.url === currentTeam.image);
+          if (matchingImg) {
+              setSelectedAvatarId(matchingImg.id);
+          }
+      }
+    } else if (teamImages.length > 0 && !selectedAvatarId) {
+        // If creating new team and images just loaded
+        setSelectedAvatarId(teamImages[0].id);
     }
-  }, [currentTeam]);
+  }, [currentTeam, teamImages]);
+
+  // Ensure we have a selection once images define or if previous selection was invalid
+  useEffect(() => {
+    if (!selectedAvatarId && teamImages.length > 0) {
+      setSelectedAvatarId(teamImages[0].id);
+    }
+  }, [teamImages, selectedAvatarId]);
 
   const handleClose = () => {
     if (onClose) {
@@ -51,28 +68,29 @@ export default function TeamEdit({ onClose, onSave }) {
   const handleSave = async () => {
     if (!currentTeam) return;
 
-
     if (!name.trim()) {
        alert("Name cannot be empty");
        return;
     }
 
     let savedTeam = null;
+    const imageUrl = getAvatarUrl(selectedAvatarId);
 
     if (currentTeam.isNew) {
          const newTeamData = {
             name: name,
             avatar: selectedAvatarId,
-            image: "https://jeopardy-gkiyb.ondigitalocean.app/teams/team1.png", // Default image for API
+            image: imageUrl,
             score: 0
          };
          savedTeam = await createTeam(newTeamData);
     } else {
          await updateTeam(currentTeam._id, {
             name: name,
-            avatar: selectedAvatarId
+            avatar: selectedAvatarId,
+            image: imageUrl
          });
-         savedTeam = { ...currentTeam, name, avatar: selectedAvatarId };
+         savedTeam = { ...currentTeam, name, avatar: selectedAvatarId, image: imageUrl };
     }
 
     if (onSave && savedTeam) {
@@ -82,7 +100,7 @@ export default function TeamEdit({ onClose, onSave }) {
     }
   };
 
-  const currentAvatarSrc = AVATAR_MAP[selectedAvatarId] || AVATAR_MAP.default;
+  const currentAvatarSrc = getAvatarUrl(selectedAvatarId);
 
   return (
     <div className={styles.modalBackground} onClick={handleClose}>
@@ -98,6 +116,7 @@ export default function TeamEdit({ onClose, onSave }) {
 
             {/* Editable name input */}
             <input
+                ref={nameInputRef}
                 type="text"
                 className={styles.nameInput}
                 value={name}
@@ -107,31 +126,33 @@ export default function TeamEdit({ onClose, onSave }) {
 
           <div className={styles.right}>
             <div className={styles.avatarGrid}>
-              {AVAILABLE_AVATARS.map((a) => (
+              {teamImages.map((a) => (
                 <img
                   key={a.id}
-                  src={a.src}
+                  src={a.url}
                   className={`${styles.smallAvatar} ${
                     selectedAvatarId === a.id ? styles.selected : ""
                   }`}
                   onClick={() => setSelectedAvatarId(a.id)}
-                  alt={a.id}
+                  alt={a.label || a.id}
                 />
               ))}
             </div>
 
-            <Button ms="saveBtn" content={"SAVE"} func={handleSave} />
+            <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+              <Button ms="saveBtn" content={"SAVE"} func={handleSave} />
 
-            {/* DELETE Button - only show for existing teams */}
-            {!currentTeam?.isNew && (
-              <button
-                className={styles.deleteBtn}
-                onClick={handleDelete}
-                style={{ marginTop: "1rem", backgroundColor: "#ff4444", color: "white", padding: "10px", borderRadius: "8px", border: "none", cursor: "pointer", width: "100%", fontWeight: "bold" }}
-              >
-                DELETE TEAM
-              </button>
-            )}
+              {/* DELETE Button - only show for existing teams */}
+              {!currentTeam?.isNew && (
+                <button
+                  className={styles.deleteBtn}
+                  onClick={handleDelete}
+                  style={{ backgroundColor: "#ff4444", color: "white", padding: "10px 20px", borderRadius: "6px", border: "none", cursor: "pointer", fontWeight: "bold" }}
+                >
+                  DELETE TEAM
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
